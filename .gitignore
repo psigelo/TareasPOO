@@ -2,3 +2,4 @@
 *.cvs
 *.aux
 *.log
+*.backup

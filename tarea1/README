@@ -2,6 +2,18 @@ Simulador de interacciones físicas simples.
 
 El proyecto consta de varias etapas las cuales son cada una un experimento simple, cada etapa agrega dificultad al problema.
 
+Instalación de Java en su ordenador:
+===================================
+
+Entrar en el siguiente link, descargar la versión que le corresponda y leer las instrucciiones que proporciona la misma página:
+https://www.java.com/es/download/manual.jsp?locale=es
+
+En caso que el link no esté disponible, ustede debe entrar en el siguiente sitio web y leer buscar la descarga que le corresponda a su sistema operativo.
+
+http://www.java.com/
+
+Tarea 1, simulador:
+==================
 
 Etapa 1:
 ========

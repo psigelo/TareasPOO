@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.util.Formatter;
 
 public class MyWorld {
    private PrintStream out;
@@ -19,17 +20,29 @@ public class MyWorld {
    }
 
    public void printStateDescription(){
-     String s ="Time\t\t";
-     for (PhysicsElement e:elements)
-       s+=e.getDescription() + "\t\t";
+     String s ="Time,";
+     int i = 0;
+     for (PhysicsElement e:elements){
+       s+=e.getDescription();
+       if(i < elements.size() - 1){
+        s+=",";
+      }
+      i++;
+     }
+
      out.println(s);
    }
 
    public void printState(double t){
     //  to be coded by you
-    System.out.format("%.5f\t\t", t);
+    System.out.format(Locale.US,"%.5f,", t);
+    int i = 0;
     for (PhysicsElement e: elements){
       e.printState();
+      if(i < elements.size() - 1){
+        System.out.print(",");
+      }
+      i++;
     }
     System.out.println();
    }

@@ -49,13 +49,13 @@ public class Ball extends PhysicsElement {
    
    public String getDescription() {
    // to be coded by you
-    String imprimir      = new String("Ball ");
+    String imprimir      = new String("Ball");
     imprimir            += this.getId() + ":x";
     return imprimir;
    }
 
    public void printState(){
-    System.out.format("%.5f\t\t", pos_t);
+    System.out.format(Locale.US,"%.5f", pos_t);
    }
 
    public double getMass(){
