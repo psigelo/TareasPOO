@@ -8,7 +8,6 @@ public abstract class PhysicsElement {
       return myId;
    }
    public abstract String 	getDescription();
-   public abstract String 	getState();
    public abstract void 	computeNextState(double delta_t, MyWorld world);
    public abstract void 	updateState();
    public abstract void		printState();

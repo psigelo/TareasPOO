@@ -37,7 +37,7 @@ public class Ball extends PhysicsElement {
    }
    public boolean collide(Ball b) {
    // to be coded by you
-    if     ( Math.abs(pos_t + radius - (b.pos_t - radius))  <  0.001*radius )  return true;
+    if     ( Math.abs(pos_t + radius - (b.pos_t - radius))  <  0.001*radius )  return true; 
     else if( Math.abs(pos_t - radius - (b.pos_t + radius))  <  0.001*radius )  return true;
     return false;
   }
@@ -50,14 +50,8 @@ public class Ball extends PhysicsElement {
    public String getDescription() {
    // to be coded by you
     String imprimir      = new String("Ball ");
-    imprimir            += this.id;
+    imprimir            += this.getId() + ":x";
     return imprimir;
-   }
-
-   public String getState(){
-    //sda
-    String hola = "hola";
-    return hola;
    }
 
    public void printState(){

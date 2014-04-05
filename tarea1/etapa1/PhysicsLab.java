@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.Locale;
+import javax.swing.*;
+
 
 public class PhysicsLab {
    public static void main(String[] args) {
@@ -9,13 +11,14 @@ public class PhysicsLab {
     double samplingTime;
 
       if (args.length != 3)  {
-        Scanner s = new Scanner(System.in).useLocale(Locale.US);
-        System.out.print("delta (ejemplo 0.001): ");
-        deltaTime = s.nextDouble();
-        System.out.print("Duracion experimento (ejemplo 5.0): ");
-        endTime = s.nextDouble();
-        System.out.print("Tiempo de muestreo (ejemplo 0.001): ");
-        samplingTime = s.nextDouble();
+        
+        String Sdelta     = JOptionPane.showInputDialog("Introduzca delta: ");
+        String Send       = JOptionPane.showInputDialog("Introduzca duracion: ");
+        String Ssampling  = JOptionPane.showInputDialog("Introduzca tiempo_muestreo: ");
+        deltaTime         = Double.parseDouble(Sdelta);
+        endTime           = Double.parseDouble(Send);
+        samplingTime      = Double.parseDouble(Ssampling);
+
       }
       else{
         deltaTime      = Double.parseDouble(args[0]);      // [s]

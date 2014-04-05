@@ -7,7 +7,7 @@
 JFLAGS = -g
 JC = javac
 JVM= java 
-FILE= Algo.csv
+FILE= Resultado_experimento.csv
 
 #
 # Clear any default targets for building .class files from .java files; we 
@@ -77,7 +77,7 @@ classes: $(CLASSES:.java=.class)
 # $(JMV) y $(MAIN) are replaced by their values
 
 run: 
-	$(JVM) $(MAIN)
+	$(JVM) $(MAIN) > $(FILE)
 
 # this line is to remove all unneeded files from
 # the directory when we are finished executing(saves space)
