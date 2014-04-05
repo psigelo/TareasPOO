@@ -1,0 +1,24 @@
+Simulador de interacciones físicas simples.
+
+El proyecto consta de varias etapas las cuales son cada una un experimento simple, cada etapa agrega dificultad al problema.
+
+
+Etapa 1:
+========
+
+Resumen:
+El experimento consiste en la interacción entre dos bolas, una que está queieta y la otra que está en movimiento y que probablemente colisionarán.
+
+Compilacion:
+
+> cd etapa1
+> make
+
+Ejecución:
+> make run
+
+Ejecución (alternativa):
+> java PhysicsLab <delta> <Duración> <tiempo de muestreo>
+
+ejemplo:
+> java PhysicsLab 0.001 5 0.001
