@@ -1,2 +1,4 @@
 *.class
 *.cvs
+*.aux
+*.log
