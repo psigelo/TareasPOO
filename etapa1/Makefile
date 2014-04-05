@@ -77,7 +77,7 @@ classes: $(CLASSES:.java=.class)
 # $(JMV) y $(MAIN) are replaced by their values
 
 run: 
-	$(JVM) $(MAIN) 0.0001 4 0.0001
+	$(JVM) $(MAIN)
 
 # this line is to remove all unneeded files from
 # the directory when we are finished executing(saves space)
