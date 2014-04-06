@@ -29,14 +29,14 @@ public class PhysicsLab {
       
       double mass           = 1.0;                              // 1 [kg] 
       double radius         = 0.1;                              // 10 [cm] 
-      double position       = 0.0;                              // 1 [m] 
-      double speed          = 0.5;                              // 0.5 [m/s]
+      double position       = 0.0;                              // 0 [m] 
+      double speed          = 0.0;                              // 0 [m/s]
       
       
      
       Ball b0               = new Ball(mass, radius, position, speed);
-      Ball b1               = new Ball(mass, radius, 1.56, 0);
-      Spring spring         = new Spring(1.0, 0.5);
+      Ball b1               = new Ball(mass, radius, 1.5, 0);
+      Spring spring         = new Spring(1.0, 1.0);
 
       spring.attachEnd(b0);
       spring.attachEnd(b1);
