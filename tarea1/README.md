@@ -2,7 +2,7 @@
 
 El proyecto consta de varias etapas las cuales son cada una un experimento simple, cada etapa agrega dificultad al problema.
 
-##Instalación de Java en su ordenador:
+Instalación de Java en su ordenador:
 ===================================
 
 Entrar en el siguiente link, descargar la versión que le corresponda y leer las instrucciiones que proporciona la misma página:
