@@ -38,12 +38,14 @@ ejemplo:
 
 Observaciones:
 Si se ejecuta 
->make run
+>$ make run
 Entonces el programa exigirá la introducción de los valores de delta, duración del experimento y tiempo de muestreo, luego el resultado del experimento será imprimido en el archivo Resultado_experimento.cvs.
 
 Si se ejecuta con 
 >$ java PhysicsLab <delta> <Duración> <tiempo de muestreo>
+
 Entonces el resultado es impreso por pantalla. Para guardar el resultado en el archivo Resultado_experimento.cvs se debe ejecutar el programa como sigue:
 >$ java PhysicsLab <delta> <Duración> <tiempo de muestreo> > Resultado_experimento.cvs
+
 ejemplo: 
 >$ java PhysicsLab 0.001 5 0.001 > Resultado_experimento.cvs
