@@ -44,7 +44,10 @@ ejemplo:
 
 Observaciones:
 Si se ejecuta 
+```
 >$ make run
+```
+
 Entonces el programa exigirá la introducción de los valores de delta, duración del experimento y tiempo de muestreo, luego el resultado del experimento será imprimido en el archivo Resultado_experimento.cvs.
 
 Si se ejecuta con 
