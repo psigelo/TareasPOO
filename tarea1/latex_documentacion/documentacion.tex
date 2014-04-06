@@ -95,8 +95,18 @@ Como se observa en el gráfico de la figura \ref{etapa1.2} cuando la bola 0 coli
 la bola 1 obtiene todo el movimiento como se esperaría de un choque elástico de dos masas iguales y una en reposo.\newline
 
 \subsection{Problemas que ocurrieron:}
+
 \subsubsection{Problema con formatos:}
+
+
 Por defecto Java usa el formato de numeros flotantes con coma ``,'' pero software como matlab usan el formato flotante con punto ``.''
 Por lo que en vez de usar \textbf{System.out.print()} se usó \textbf{System.out.format(Locale.US, ... )}.\newline
 
+
+\subsubsection{Elección de delta t:}
+
+
+Si el delta t es muy grande entonces el computo de colisión no alcanza a ocurrir cuando una de las bolas ya atravezó a la otra, por ejemplo
+si la velocidad de la bola 0 fueran 100 [mts/s] y el delta t es 1[s] entonces en el siguiente cómputo la bola 0 a avanzado 100 mts y probablemente
+atravezó a la bola 1 sin la ocurrencia de colisión.\newline
 \end{document}

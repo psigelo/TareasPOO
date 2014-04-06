@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.io.*;
 public class Ball extends PhysicsElement {
    private static int id=0;  // Ball identification number
    private final double mass;
@@ -8,7 +8,10 @@ public class Ball extends PhysicsElement {
    private double pos_tPlusDelta;  // next position in delta time in future
    private double speed_t;   // speed at time t
    private double speed_tPlusDelta;   // speed in delta time in future
-   
+   private double a_t;    // acceleration at time t
+   private double a_tMinusDelta;  // acceleration delta time ago;
+   private Spring sp;
+
    private Ball(){   // nobody can create a block without state
      this(1.0,0.1,0,0);
    }
@@ -31,11 +34,24 @@ public class Ball extends PhysicsElement {
         speed_tPlusDelta=(speed_t*(mass-b.getMass())+2*b.getMass()*b.getSpeed())/(mass+b.getMass());
         pos_tPlusDelta = pos_t + speed_tPlusDelta*delta_t;
      } else {
-        pos_tPlusDelta = pos_t + speed_t*delta_t;
-        speed_tPlusDelta = speed_t;
+        if(sp == null){
+          speed_tPlusDelta = speed_t;
+          pos_tPlusDelta = pos_t + speed_tPlusDelta*delta_t;
+        }
+        else{
+          a_t = sp.getForce(this)/mass;
+          speed_tPlusDelta = speed_t + 0.5*(3*a_t - a_tMinusDelta)*delta_t;
+          pos_tPlusDelta = pos_t + speed_t*delta_t + 0.16*(4*a_t - a_tMinusDelta)*delta_t*delta_t;
+        }
      }
+
+     
+
    }
-   public boolean collide(Ball b) {
+   public boolean collide(PhysicsElement c) {
+    Ball b;
+    if(c instanceof Ball) b=(Ball)c;
+    else return false;
    // to be coded by you
     if     ( Math.abs(pos_t + radius - (b.pos_t - b.radius))  <  0.001*radius )  return true; 
     else if( Math.abs(pos_t - radius - (b.pos_t + b.radius))  <  0.001*radius )  return true;
@@ -45,6 +61,7 @@ public class Ball extends PhysicsElement {
    public void updateState(){
      pos_t    = pos_tPlusDelta;
      speed_t  = speed_tPlusDelta;
+     a_tMinusDelta = a_t;
    }
    
    public String getDescription() {
@@ -60,5 +77,13 @@ public class Ball extends PhysicsElement {
 
    public double getMass(){
     return mass;
+   }
+
+   public void attachSpring(Spring sp){
+    this.sp = sp;
+   }
+
+   public double getPosition(){
+    return pos_t;
    }
 }
