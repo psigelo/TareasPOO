@@ -63,3 +63,64 @@ ejemplo:
 ```
 >$ java PhysicsLab 0.001 5 0.001 > Resultado_experimento.cvs
 ```
+Resultados:
+==========
+
+El resultado al ejecutar este programa serán las los valores del tiempo,  y las posiciones de ambas bolas puestos en formato CSV.
+
+Etapa 2
+=======
+
+
+Resumen:
+El experimento consiste en la interacción entre dos bolas unidas con un resorte, una que está queieta y la otra que está en movimiento.
+
+Compilacion:
+```
+>$ cd etapa1
+>$ make
+```
+
+Ejecución:
+```
+>$ make run
+```
+
+Ejecución (alternativa):
+```
+>$ java PhysicsLab <delta> <Duración> <tiempo de muestreo>
+```
+
+ejemplo:
+```
+>$ java PhysicsLab 0.001 5 0.001
+```
+
+Observaciones:
+Si se ejecuta 
+```
+>$ make run
+```
+
+Entonces el programa exigirá la introducción de los valores de delta, duración del experimento y tiempo de muestreo, luego el resultado del experimento será imprimido en el archivo Resultado_experimento.cvs.
+
+Si se ejecuta con 
+```
+>$ java PhysicsLab <delta> <Duración> <tiempo de muestreo>
+```
+Entonces el resultado es impreso por pantalla. Para guardar el resultado en el archivo Resultado_experimento.cvs se debe ejecutar el programa como sigue:
+```
+>$ java PhysicsLab <delta> <Duración> <tiempo de muestreo> > Resultado_experimento.cvs
+```
+
+ejemplo: 
+```
+>$ java PhysicsLab 0.001 25 0.001 > Resultado_experimento.cvs
+```
+
+
+
+Resultados:
+==========
+
+El resultado al ejecutar este programa serán las los valores del tiempo, las posiciones de ambas bolas puestos en formato CSV , y lo valores de la posición de cada extremo del resorte.
