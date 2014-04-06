@@ -24,18 +24,7 @@ public class Spring extends PhysicsElement {
      // to be completed by you
       sa.attachSpring(this);
    }
-   private double getAendPosition() {
-      if (a_end != null)
-         return a_end.getPosition();
-      if (b_end != null)
-         return b_end.getPosition()-restLength;
-      return 0;
-   }
-   /*
-   public double getBendPosition() {
-    // to be coded by you
-   }
-   */
+
    public double getForce(Ball ball) {
       double force = 0;
 
@@ -49,6 +38,7 @@ public class Spring extends PhysicsElement {
       if(ball == b_end) return (force);
       else return (-force);
    }
+   
    public void computeNextState(double delta_t, MyWorld w){
 
    } 
