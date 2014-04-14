@@ -26,7 +26,7 @@ public class Block extends PhysicsElement implements Computable, Collidable, Spr
 		this.width = width;
 		this.mass = mass;
 		this.gravity = gravity;
-		mu_static = mu_dynamic = 0.1;
+		mu_static = mu_dynamic = 0.001;
 	}
 	
 	//Por colisionable
@@ -69,27 +69,24 @@ public class Block extends PhysicsElement implements Computable, Collidable, Spr
 		double acceleration_by_friction;
 		Collidable coli;  // Assumption: on collision we only change speed.
 		
+		acceleration_by_friction =  -Math.signum(speed_t)*gravity * mu_dynamic;
+		a_t = acceleration_by_friction;
 		if ((coli = world.findCollidingElement(this))!= null){
 			/* elastic collision */
 			speed_tPlusDelta=(speed_t*(mass-coli.getMass())+2*coli.getMass()*coli.getSpeed())/(mass+coli.getMass());
 			pos_tPlusDelta = pos_t + speed_tPlusDelta*delta_t;
+			return; 
 		} else {
 			if(sp == null){
 				speed_tPlusDelta = speed_t;
 				pos_tPlusDelta = pos_t + speed_tPlusDelta*delta_t;
 			}
 			else{
-				a_t = sp.getForce((PhysicsElement)this)/mass;
-				acceleration_by_friction =  gravity * mu_dynamic;
-				a_t = a_t*0.9;
-				/*if(Math.abs(a_t) - Math.abs( acceleration_by_friction ) > 0)
-					a_t = a_t - Math.signum(a_t)*Math.abs(acceleration_by_friction);
-					//a_t = (a_t>0)?(- (acceleration_by_friction>0)?acceleration_by_friction:-acceleration_by_friction):(+ (acceleration_by_friction>0)?acceleration_by_friction:-acceleration_by_friction);
-					*/ 
-				speed_tPlusDelta = speed_t + 0.5*(3*a_t - a_tMinusDelta)*delta_t;
-				pos_tPlusDelta = pos_t + speed_t*delta_t + 0.16*(4*a_t - a_tMinusDelta)*delta_t*delta_t;
+				a_t += sp.getForce((PhysicsElement)this)/mass;	
 			}
 		}
+		speed_tPlusDelta = speed_t + 0.5*(3*a_t - a_tMinusDelta)*delta_t;
+		pos_tPlusDelta = pos_t + speed_t*delta_t + 0.16*(4*a_t - a_tMinusDelta)*delta_t*delta_t;
 	}
 	
 	public void 	updateState(){
