@@ -13,7 +13,7 @@
 
 \pdfinfo{%
   /Title    (Documentación tarea 1 de Programación orientada a objetos UTFSM, 2014 Semestre 1)
-  /Author   (Pascal Ernesto Sigel Olivares)
+  /Author   (Pascal Ernesto Sigel Olivares - Javier Cabezas)
   /Creator  (Pascal Ernesto Sigel Olivares)
   /Producer ()
   /Subject  ()
@@ -243,7 +243,57 @@ Se ha simulado la situación descrita en la figura \ref{etapa4.1}. Con la simula
  \centering
  \includegraphics[scale=0.5]{./simulacion_etapa4.png}
  \caption{Resultados simulación etapa 4, en el gráfico se muestran la posición de la bola que está atada al resorte y la de la bola libre respecto al tiempo.}
-  \label{etapa3.2}
+  \label{etapa4.2}
 \end{figure}
+
+\section{Etapa 5:}
+
+
+Esta etapa corresponde a la parte extra de la tarea; en esta etapa se agregan los objetos tipo bloque a los cuales les afecta la gravedad 
+y la fuerza roce.\newline
+
+ 
+\subsection{Clases e interfaces:}
+\subsubsection{Clase Block:}
+Esta clase representa a un bloque que interactúa con fuerzas roce, extiende de los elementos físicos e implemenenta las interfaces
+Collidable, Computable y SpringAttachable dado que este objeto puede colisionar, tiene que computar su próximo estado y se puede 
+enganchar a un resorte. La implementación de esta clase es similar a la de la bola la diferencia está en cómo computar su próximo estado.
+
+
+\subsection{Experimento y resultados:}
+
+ El caso ha simular puede ser representado con la siguiente figura:
+
+Lease el archivo README para ejecutar el programa.\newline
+
+En esta etapa se simulo un resorte que en su extremo izquierdo está enganchado a un FixedHook y en su extremo derecho a un Block
+las posiciones de estos son x=0[mts] y x=1.5[mts] respectivamente, el bloque tiene un coeficiente de roce cinético igual al estático e igual a 0.001. El resorte efectúa fuerzas según la ley de hooke con stifness 
+= 1 y largo natural 1. \newline
+
+ El caso ha simular puede ser representado con la siguiente figura:
+  
+   \begin{figure}[H]
+ \centering
+ \includegraphics[scale=0.3]{./FigureD.png}
+ \caption{Simulación realizada en etapa 5, las posiciones de estos son x=0[mts] y x=1.5[mts] respectivamente,
+ el bloque tiene un coeficiente de roce cinético igual al estático e igual a 0.001. El resorte efectúa fuerzas
+ según la ley de hooke con stifness 
+= 1 y largo natural 1}
+  \label{etapa5.1}
+\end{figure}
+
+
+Como resultado de la situación anteriormente descrita se obtiene el siguiente gráfico:
+
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[scale=0.5]{./simulacion_etapa5.png}
+ \caption{Resultados simulación etapa 5, en el gráfico se muestra la posición del bloque que está atada al resorte.}
+  \label{etapa5.2}
+\end{figure}
+
+Se observa el comportamiento deseado, dado que existe fuerza de rose el bloque va perdiendo energía potencial.
+
 
 \end{document}

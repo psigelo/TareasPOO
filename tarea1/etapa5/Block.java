@@ -17,16 +17,16 @@ public class Block extends PhysicsElement implements Computable, Collidable, Spr
 	private double gravity;
 
 	private Block(){   // nobody can create a block without state
-		this(1.0 , 0.1 , 1, 9.8);
+		this(1.0 , 0.1 , 1, 9.8, 0.001);
 	}
 	
-	public Block(double position, double width, double mass, double gravity){
+	public Block(double position, double width, double mass, double gravity, double mu){
 		super(id++);
 		pos_t = position;
 		this.width = width;
 		this.mass = mass;
 		this.gravity = gravity;
-		mu_static = mu_dynamic = 0.001;
+		mu_static = mu_dynamic = mu;
 	}
 	
 	//Por colisionable
