@@ -1,5 +1,7 @@
 *.class
 *.cvs
+*.csv
+*.scv
 *.aux
 *.log
 *.backup
