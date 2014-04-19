@@ -52,7 +52,7 @@ public class FixedHook extends PhysicsElement implements Collidable, SpringAttac
     }
 
     public double getMass(){
-        return 999999999.99; // Is like a wall
+        return 999999999.99; // Is like a wall.
     }
 
     public double getSpeed(){
