@@ -69,7 +69,7 @@ ejemplo:
 >$ java PhysicsLab 0.001 5 0.001 > Resultado_experimento.cvs
 ```
 Resultados:
-==========
+----------
 
 El resultado al ejecutar este programa serán las los valores del tiempo,  y las posiciones de ambas bolas puestos en formato CSV.
 
@@ -126,7 +126,7 @@ ejemplo:
 
 
 Resultados:
-==========
+----------
 
 El resultado al ejecutar este programa serán las los valores del tiempo, las posiciones de ambas bolas puestos en formato CSV , y lo valores de la posición de cada extremo del resorte.
 
@@ -185,7 +185,7 @@ ejemplo:
 
 
 Resultados:
-==========
+----------
 
 El resultado al ejecutar este programa serán las los valores del tiempo, las posiciones de cada uno de los objetos
 puestos en formato CSV.
@@ -245,7 +245,7 @@ ejemplo:
 
 
 Resultados:
-==========
+----------
 
 El resultado al ejecutar este programa serán las los valores del tiempo, las posiciones de cada uno de los objetos
 puestos en formato CSV.
@@ -306,7 +306,7 @@ ejemplo:
 
 
 Resultados:
-==========
+----------
 
 El resultado al ejecutar este programa serán las los valores del tiempo, las posiciones de cada uno de los objetos
 puestos en formato CSV.
