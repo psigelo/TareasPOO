@@ -15,7 +15,7 @@ public class Block extends PhysicsElement implements Computable, Collidable, Spr
 	private double mu_static; //Constante de roce estático y dinámico.
 	private double mu_dynamic;
 	private double gravity;
-
+	
 	private Block(){   // nobody can create a block without state
 		this(1.0 , 0.1 , 1, 9.8, 0.001);
 	}
@@ -69,20 +69,19 @@ public class Block extends PhysicsElement implements Computable, Collidable, Spr
 		double acceleration_by_friction;
 		Collidable coli;  // Assumption: on collision we only change speed.
 		
-		acceleration_by_friction =  -Math.signum(speed_t)*gravity * mu_dynamic;
+		acceleration_by_friction =  -Math.signum(speed_t)*gravity * mu_dynamic; //-Math.Signum(speed_t) se usa porque siempre la fricción será contraria al movimiento.
 		a_t = acceleration_by_friction;
 		if ((coli = world.findCollidingElement(this))!= null){
-			/* elastic collision */
 			speed_tPlusDelta=(speed_t*(mass-coli.getMass())+2*coli.getMass()*coli.getSpeed())/(mass+coli.getMass());
 			pos_tPlusDelta = pos_t + speed_tPlusDelta*delta_t;
-			return; 
+			return;
 		} else {
 			if(sp == null){
 				speed_tPlusDelta = speed_t;
 				pos_tPlusDelta = pos_t + speed_tPlusDelta*delta_t;
 			}
 			else{
-				a_t += sp.getForce((PhysicsElement)this)/mass;	
+				a_t += sp.getForce((PhysicsElement)this)/mass;
 			}
 		}
 		speed_tPlusDelta = speed_t + 0.5*(3*a_t - a_tMinusDelta)*delta_t;
@@ -95,17 +94,16 @@ public class Block extends PhysicsElement implements Computable, Collidable, Spr
 		a_tMinusDelta = a_t;
 	}
 	//Fin Computable
-
+	
 	//Por PhysicsElement
-	 public String getDescription() {
+	public String getDescription() {
 		String imprimir      = new String("Block");
 		imprimir            += this.getId() + ":x";
 		return imprimir;
-	 }
-
-	 public void printState(){
+	}
+	
+	public void printState(){
 		System.out.format(Locale.US,"%.5f", pos_t);
-	 }
-
+	}
 	//Fin PhysicsElement
 }
