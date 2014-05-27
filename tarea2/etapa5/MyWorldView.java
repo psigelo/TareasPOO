@@ -39,7 +39,6 @@ public class MyWorldView extends JPanel {
 	
 	public MyWorldView(MyWorld w){
 		world = w;
-		addMouseListener(new MouseHandler(world));
 		addMouseMotionListener(new MouseMotionHandler(world));
 	}
 	public void repaintView(){
@@ -57,39 +56,7 @@ public class MyWorldView extends JPanel {
 		world.updateView(g2);
 	}
 
-	private class MouseHandler extends MouseAdapter
-   {
-   		private MyWorld world;
-   		public MouseHandler(MyWorld w){
-   			world = w;
-   		}
-
-      public void mousePressed(MouseEvent event)
-      {
-         // add a new square if the cursor isn't inside a square
-         /*current = find(event.getPoint());
-         if (current == null)
-            add(event.getPoint());
-            */
-            //JOptionPane.showMessageDialog(null, "ohnoes!", "ohnoes!", JOptionPane.ERROR_MESSAGE);
-            //world.findSelection( (event.getX()- WIDTH*0.1)/(double)AXES_SCALE , (event.getY()-  HEIGHT*0.9)/(double)AXES_SCALE );
-            //world.moveSelection( (event.getX()- WIDTH*0.1)/(double)AXES_SCALE , (event.getY()-  HEIGHT*0.9)/(double)AXES_SCALE );
-      }
-
-      public void mouseClicked(MouseEvent event)
-      {
-        /*
-         // remove the current square if double clicked
-         current = find(event.getPoint());
-         if (current != null && event.getClickCount() >= 2)
-            remove(current);
-            */
-            //JOptionPane.showMessageDialog(null, "ohnoes!", "ohnoes!", JOptionPane.ERROR_MESSAGE);
-
-            world.findSelection( (event.getX()- WIDTH*0.1)/(double)AXES_SCALE , (event.getY()-  HEIGHT*0.9)/(double)AXES_SCALE );
-      }    
-   }
-
+	
 
    private class MouseMotionHandler
       implements MouseMotionListener
