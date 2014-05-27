@@ -40,14 +40,50 @@ public class LabMenuListener implements ActionListener {
 			double speed = 0.0;     // 0.5 [m/s]
 			double gravity        = 9.8;                              // 9.8 [m/s^2]
 			double coeficiente_rose_b1 = 0.01;
-			Ball b0 				= new Ball(mass, radius, position + 0.9, speed);
-			FixedHook fh          	= new FixedHook(0.0, 0.1);
 			Spring spring         	= new Spring(1.0, 1.0);
+			while(true){
+				String data = JOptionPane.showInputDialog("En el extremo izquierdo usar: (ball, block, hook)");
+				if(data.equals("ball")){
+					Ball b0 				= new Ball(mass, radius, 0, speed);
+					spring.attachEnd((PhysicsElement)b0);
+					world.addElement(b0);
+					break;
+				}
+				else if(data.equals("block")){
+					Block b1               	= new Block(0, radius, mass, gravity, coeficiente_rose_b1);
+					spring.attachEnd((PhysicsElement)b1);
+					world.addElement(b1);
+					break;
+				}
+				else if(data.equals("hook")){
+					FixedHook fh          	= new FixedHook(0.0, 0.1);
+					spring.attachEnd((PhysicsElement)fh);
+					world.addElement(fh);
+					break;
+				}
+			}
 
-			spring.attachEnd((PhysicsElement)fh);
-			spring.attachEnd((PhysicsElement)b0);
-			world.addElement(b0);
-			world.addElement(fh);
+			while(true){
+				String data = JOptionPane.showInputDialog("En el extremo derecho usar: (ball, block, hook)");
+				if(data.equals("ball")){
+					Ball b0 				= new Ball(mass, radius, 0.9, speed);
+					spring.attachEnd((PhysicsElement)b0);
+					world.addElement(b0);
+					break;
+				}
+				else if(data.equals("block")){
+					Block b1               	= new Block(0.9, radius, mass, gravity, coeficiente_rose_b1);
+					spring.attachEnd((PhysicsElement)b1);
+					world.addElement(b1);
+					break;
+				}
+				else if(data.equals("hook")){
+					FixedHook fh          	= new FixedHook(0.9, 0.1);
+					spring.attachEnd((PhysicsElement)fh);
+					world.addElement(fh);
+					break;
+				}
+			}
 			world.addElement(spring);
 		}
 
