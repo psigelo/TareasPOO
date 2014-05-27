@@ -94,24 +94,33 @@ public class MyWorld implements ActionListener {
 
 	
 	public void findSelection(double x, double y){
-		for (PhysicsElement e: elements){
+		if(!passingTime.isRunning()){
+			for (PhysicsElement e: elements){
 
-			
-			if( e.contains(x, y) )	
-				e.setSelected();
-			else{
-				e.setReleased();
+				
+				if( e.contains(x, y) )	
+					e.setSelected();
+				else{
+					e.setReleased();
+				}
 			}
+			repaintView();
 		}
-			
 	}
 
 	public void moveSelection(double x, double y){
-		for (PhysicsElement e: elements){
-			if(e.getIsSelected()){
-				e.dragTo(x);
+		if(!passingTime.isRunning()){
+			for (PhysicsElement e: elements){
+				if(e.getIsSelected()){
+					e.dragTo(x);
+				}
 			}
+			repaintView();
 		}
+	}
+
+	public boolean getIsRunning(){
+		return passingTime.isRunning();
 	}
 
 }

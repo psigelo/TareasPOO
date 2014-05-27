@@ -49,6 +49,7 @@ public class MyWorldView extends JPanel {
 		Graphics2D g2 = (Graphics2D)g;
 		super.paintComponent(g); // it paints the background
 		g2.drawString("ELO329 1er.Sem. 2014,   1 [m] = "+AXES_SCALE+" [pixels]", WIDTH/4, 30);
+		g2.drawString( "para editar posiciones se debe parar la simulacion con stop", WIDTH/4, 50);
 		g2.transform(SPACE_TRANSFORM);
 		g2.setStroke(new BasicStroke(0.02f));
 		g2.draw(X_AXIS);

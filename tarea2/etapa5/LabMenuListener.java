@@ -159,12 +159,22 @@ public class LabMenuListener implements ActionListener {
 			world.stop();
 		}
 		if (text.equals("Chage delta time")) {
-			String data = JOptionPane.showInputDialog("Enter delta t [s]");
-			world.setDelta_t(Double.parseDouble(data));
+			if(!world.getIsRunning()){
+				String data = JOptionPane.showInputDialog("Enter delta t [s]");
+				world.setDelta_t(Double.parseDouble(data));
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		if (text.equals("Chage refresh rate")) {
-			String data = JOptionPane.showInputDialog("Enter delta t [s]");
-			world.setRefreshPeriod (Double.parseDouble(data));
+			if(!world.getIsRunning()){
+				String data = JOptionPane.showInputDialog("Enter delta t [s]");
+				world.setRefreshPeriod (Double.parseDouble(data));
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 }
