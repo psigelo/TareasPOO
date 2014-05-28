@@ -73,7 +73,6 @@ public class MyWorld implements ActionListener {
         view.repaintView();
     }
     
-    
     public Collidable findCollidingElement(PhysicsElement me) {
         Collidable coli;
         for (PhysicsElement e: elements)
@@ -122,5 +121,4 @@ public class MyWorld implements ActionListener {
     public boolean getIsRunning(){
         return passingTime.isRunning();
     }
-    
 }
