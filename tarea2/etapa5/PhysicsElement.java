@@ -1,5 +1,9 @@
 import java.awt.*;
-
+/**
+ * Clase abstracta con los métodos correspondientes a cada PhysicsElement.
+ * 
+ * @author jcley_000
+ */
 public abstract class PhysicsElement {
    private final int myId; /* to identify each element within its category */
    
