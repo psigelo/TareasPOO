@@ -102,3 +102,7 @@ run:
 
 clean:
 	$(RM) *.class
+
+
+doc:
+	javadoc *.java

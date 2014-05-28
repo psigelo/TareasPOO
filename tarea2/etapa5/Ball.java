@@ -24,11 +24,11 @@ public class Ball extends PhysicsElement implements Computable, Collidable, Spri
 	}
         
         /**
-         * Genera una ball con los parámetros entregados por argumento.
+         * Genera una ball con los parametros entregados por argumento.
          * 
          * @param mass la masa de la bola.
          * @param radius su radio.
-         * @param position su posición inicial.
+         * @param position su posicion inicial.
          * @param speed su velocidad inicial.
          */
 	public Ball(double mass, double radius, double position, double speed){
@@ -59,10 +59,10 @@ public class Ball extends PhysicsElement implements Computable, Collidable, Spri
 	}
 	
         /**
-         * Calcula cual será el siguiente estado luego de un delta de tiempo.
+         * Calcula cual sera el siguiente estado luego de un delta de tiempo.
          * 
-         * @param delta_t el delta de tiempo específicado.
-         * @param world  el objeto mundo con que se hará el cálculo.
+         * @param delta_t el delta de tiempo especificado.
+         * @param world  el objeto mundo con que se hara el calculo.
          */
 	public void computeNextState(double delta_t, MyWorld world) {
 		Collidable coli;  // Assumption: on collision we only change speed.
@@ -90,10 +90,10 @@ public class Ball extends PhysicsElement implements Computable, Collidable, Spri
 	}
 	
         /**
-         * Retorna si existe colisión entre la ball y un objeto colisionable
+         * Retorna si existe colision entre la ball y un objeto colisionable
          * 
-         * @param c el elemento físico con que se calculará si existe colisión.
-         * @return true si existe colisión, falso de otro modo.
+         * @param c el elemento fisico con que se calculara si existe colision.
+         * @return true si existe colision, falso de otro modo.
          */
 	public boolean collide(PhysicsElement c) {
 		Collidable coli;
@@ -108,7 +108,7 @@ public class Ball extends PhysicsElement implements Computable, Collidable, Spri
 	}
 	
         /**
-         * Actualiza el estado (posición, velocidad y aceleración-menos-delta del ball
+         * Actualiza el estado (posicion, velocidad y aceleracion-menos-delta del ball
          */
 	public void updateState(){
 		pos_t    = pos_tPlusDelta;
@@ -117,9 +117,9 @@ public class Ball extends PhysicsElement implements Computable, Collidable, Spri
 	}
 	
         /**
-         * Retorna la descripción de la ball. La descripción es su nombre y posición.
+         * Retorna la descripcion de la ball. La descripcion es su nombre y posicion.
          * 
-         * @return su descripción.
+         * @return su descripcion.
          */
 	public String getDescription() {
 		String imprimir      = new String("Ball");
@@ -128,7 +128,7 @@ public class Ball extends PhysicsElement implements Computable, Collidable, Spri
 	}
 	
         /**
-         * Muestra por pantalla la posción del objeto ball.
+         * Muestra por pantalla la poscion del objeto ball.
          */
 	public void printState(){
 		System.out.format(Locale.US,"%.5f", pos_t);
@@ -146,63 +146,63 @@ public class Ball extends PhysicsElement implements Computable, Collidable, Spri
         /**
          * Le asigna un resorte al objeto ball.
          * 
-         * @param sp el resorte al cual se le asignará el ball.
+         * @param sp el resorte al cual se le asignara el ball.
          */
 	public void attachSpring(Spring sp){
 		this.sp = sp;
 	}
 
         /**
-         * Le asigna un elástico al obketo ball
+         * Le asigna un elastico al obketo ball
          * 
-         * @param el el elástico al cual se le asignará el ball.
+         * @param el el elastico al cual se le asignara el ball.
          */
 	public void attachElastic(Elastic el){
 		this.el = el;
 	}
 	
         /**
-         * Entrega la posición de de la ball.
+         * Entrega la posicion de de la ball.
          * 
-         * @return la posición del elemento ball.
+         * @return la posicion del elemento ball.
          */
 	public double getPosition(){
 		return pos_t;
 	}
 	
         /**
-         * Retorna la posición del extremo derecho de la ball (necesario para cálculo de colisiones)
+         * Retorna la posicion del extremo derecho de la ball (necesario para calculo de colisiones)
          * 
-         * @return la posición del extremo derecho. 
+         * @return la posicion del extremo derecho. 
          */
 	public double obtener_extremo_derecho(){
 		return pos_t + radius;
 	}
         
         /**
-         * Retorna la posición del extremo izquierdo de la ball (necesario para cálculo de colisiones)
+         * Retorna la posicion del extremo izquierdo de la ball (necesario para calculo de colisiones)
          * 
-         * @return la posición del extremo izquierdo. 
+         * @return la posicion del extremo izquierdo. 
          */
 	public double obtener_extremo_izquierdo(){
 		return pos_t - radius;
 	}
         
         /**
-         * Actualiza la vista del ball según el modelo MVC
+         * Actualiza la vista del ball segun el modelo MVC
          * 
-         * @param g el objeto gráfico a actualizar.
+         * @param g el objeto grafico a actualizar.
          */
 	public void updateView (Graphics2D g) {
 		view.updateView(g);  
 	}
 
         /**
-         * Revisa si el elemento ball está en la posición entregada por argumento
+         * Revisa si el elemento ball esta en la posicion entregada por argumento
          * 
-         * @param x posición x a revisar
-         * @param y posición y a revisar
-         * @return true en caso de que esté, false en caso contrario.
+         * @param x posicion x a revisar
+         * @param y posicion y a revisar
+         * @return true en caso de que este, false en caso contrario.
          */
 	public boolean contains(double x, double y) {
 		return view.contains(x,y);
@@ -223,20 +223,24 @@ public class Ball extends PhysicsElement implements Computable, Collidable, Spri
 	}
 
         /**
-         * Cambia la posición x del elemento ball
+         * Cambia la posicion x del elemento ball
          * 
-         * @param x nueva posición x del elemento.
+         * @param x nueva posicion x del elemento.
          */
 	public void dragTo(double x){
 		pos_t=x;
 	}
 
         /**
-         * Revisa si el elemento está seleccionado
+         * Revisa si el elemento esta seleccionado
          * 
-         * @return true en caso de que esté seleccionado, false en caso contrario. 
+         * @return true en caso de que este seleccionado, false en caso contrario. 
          */
 	public boolean getIsSelected(){
 		return view.getIsSelected();
+	}
+
+	public void setEspSelected(){
+		view.setEspSelected();
 	}
 }

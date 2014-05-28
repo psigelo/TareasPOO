@@ -40,6 +40,8 @@ public class MyWorldView extends JPanel {
 	public MyWorldView(MyWorld w){
 		world = w;
 		addMouseMotionListener(new MouseMotionHandler(world));
+		addKeyListener(new KeyHandler(world));
+      	setFocusable(true);
 	}
 	public void repaintView(){
 		repaint();
@@ -76,6 +78,27 @@ public class MyWorldView extends JPanel {
          world.moveSelection( (event.getX()- WIDTH*0.1)/(double)AXES_SCALE , (event.getY()-  HEIGHT*0.9)/(double)AXES_SCALE );
       
       }
+   }
+
+   private class KeyHandler implements KeyListener
+   {  
+   		private MyWorld world;
+   		public KeyHandler(MyWorld w){
+   			world = w;
+   			
+   		}
+   		
+      public void keyPressed(KeyEvent event){}
+      public void keyReleased(KeyEvent event) {
+      	//JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
+      	char keyChar = event.getKeyChar();
+         if(keyChar == 'n' || keyChar == 'N'){
+         	//JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
+         	world.changeSelection();
+         }
+      }
+	
+      public void keyTyped(KeyEvent event) { }
    }
 
 }

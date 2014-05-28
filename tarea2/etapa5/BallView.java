@@ -8,9 +8,9 @@ public class BallView {
 	private boolean isSelected;
 	
         /**
-         * Asigna los valores que tiene una ball en específico a una vista.
+         * Asigna los valores que tiene una ball en especifico a una vista.
          * 
-         * @param b la ball a la cual se le conseguirán los parámetros.
+         * @param b la ball a la cual se le conseguiran los parametros.
          */
 	public BallView (Ball b){
 		Double x = b.getPosition();
@@ -23,18 +23,18 @@ public class BallView {
 	}
 	
         /**
-         * Revisa si los parámetros entregados por argumento pertecen al objeto ball.
+         * Revisa si los parametros entregados por argumento pertecen al objeto ball.
          * 
-         * @param x la posición x a revisar
-         * @param y la posición y a revisar
-         * @return true si el ball está en la coordenada (x, y) entregada, false en caso contrario.
+         * @param x la posicion x a revisar
+         * @param y la posicion y a revisar
+         * @return true si el ball esta en la coordenada (x, y) entregada, false en caso contrario.
          */
 	public boolean contains (double x, double y){
 		return shape.contains(x,y);
 	}
         
         /**
-         * Selecciona al ball en específico y lo deja de color cyan para identificarlo.
+         * Selecciona al ball en especifico y lo deja de color cyan para identificarlo.
          */
 	public void setSelected (){
 		color = Color.CYAN;
@@ -50,23 +50,27 @@ public class BallView {
 	}
         
         /**
-         * Retorna el estado de la selección del ball.
+         * Retorna el estado de la seleccion del ball.
          * 
-         * @return true si está selecionado y false en caso contrario.
+         * @return true si esta selecionado y false en caso contrario.
          */
 	public boolean getIsSelected(){
 		return isSelected;
 	}
 	
         /**
-         * Actualiza la vista de la ball en el elemento gráfico.
+         * Actualiza la vista de la ball en el elemento grafico.
          * 
-         * @param g el elemento gráfico en donde se actualizará la vista.
+         * @param g el elemento grafico en donde se actualizara la vista.
          */
 	public void updateView(Graphics2D g) {
 		double radius = ball.getRadius();
 		shape.setFrame(ball.getPosition()-radius, -radius, 2*radius, 2*radius);
 		g.setColor(color);
 		g.fill(shape);
+	}
+
+	public void setEspSelected(){
+		color = Color.LIGHT_GRAY;
 	}
 }

@@ -28,9 +28,9 @@ public class Spring extends PhysicsElement {
     }
     
     /**
-    * Esta función asigna una masa a un resorte en específico.
+    * Esta funcion asigna una masa a un resorte en especifico.
     *
-    * @param sa el elemento físico que que se le asociará al resorte.
+    * @param sa el elemento fisico que que se le asociara al resorte.
     */
     public void attachEnd (PhysicsElement sa) {
         if(!(sa instanceof SpringAttachable) ) return;
@@ -45,7 +45,7 @@ public class Spring extends PhysicsElement {
     }
     
     /**
-    * Obtiene la fuerza de un resorte en específico.
+    * Obtiene la fuerza de un resorte en especifico.
     *
     * @param element el elemento que se tiene al extremo del resorte.
     * @return la fuerza que ejerce el resorte
@@ -67,16 +67,16 @@ public class Spring extends PhysicsElement {
     }
     
     /**
-    * Retorna la descripción del resorte (que sería su nombre y posición de sus extremos)
+    * Retorna la descripcion del resorte (que seria su nombre y posicion de sus extremos)
     *
-    * @return la descripción.
+    * @return la descripcion.
     */
     public String getDescription() {
         return "Spring_"+ getId()+":a_end,Spring_"+getId()+":b_end";
     }
     
     /**
-    * Imprime en pantalla la descripción del resorte (nombre y posición de sus extremos)
+    * Imprime en pantalla la descripcion del resorte (nombre y posicion de sus extremos)
     */
     public void printState() {
         System.out.format(Locale.US,"%.5f,%.5f", a_end.obtener_extremo_derecho() , b_end.obtener_extremo_izquierdo() );
@@ -108,6 +108,9 @@ public class Spring extends PhysicsElement {
     
     public boolean getIsSelected(){
         return view.getIsSelected();
+    }
+    
+    public void setEspSelected(){
     }
 }
 

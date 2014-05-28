@@ -145,4 +145,7 @@ public class Block extends PhysicsElement implements Computable, Collidable, Spr
 		return view.contains(x,y);
 	}
 
+	public void setEspSelected(){
+		view.setEspSelected();
+	}
 }

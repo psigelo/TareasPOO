@@ -1,5 +1,5 @@
 /**
- * Interfaz de todos los elementos físicos a los cuales se le puede conectar un resorte. 
+ * Interfaz de todos los elementos fisicos a los cuales se le puede conectar un resorte. 
  * 
  * @author jcley_000
  */

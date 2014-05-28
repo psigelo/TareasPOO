@@ -1,6 +1,6 @@
 import java.awt.*;
 /**
- * Clase abstracta con los métodos correspondientes a cada PhysicsElement.
+ * Clase abstracta con los metodos correspondientes a cada PhysicsElement.
  * 
  * @author jcley_000
  */
@@ -21,4 +21,5 @@ public abstract class PhysicsElement {
    public abstract void dragTo(double x);
    public abstract boolean contains(double x, double y);
    public abstract boolean getIsSelected();
+   public abstract void setEspSelected();
 }

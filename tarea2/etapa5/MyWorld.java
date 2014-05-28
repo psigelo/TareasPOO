@@ -11,6 +11,8 @@ public class MyWorld implements ActionListener {
     private PrintStream out;
     
     private ArrayList<PhysicsElement> elements;  // array to hold everything in my world.
+    private ArrayList<PhysicsElement> selected;
+    private int contador_selected;
     private MyWorldView view;   // NEW
     private Timer passingTime;   // NEW
     private double t;        // simulation time
@@ -22,7 +24,7 @@ public class MyWorld implements ActionListener {
     }
 
     /**
-     * Clase inicial que asigna los parámetros por defecto.
+     * Clase inicial que asigna los parametros por defecto.
      * 
      * @param output 
      */
@@ -32,14 +34,15 @@ public class MyWorld implements ActionListener {
         refreshPeriod = 0.06;      // 60 [ms]
         delta_t = 0.00001;          // 0.01 [ms]
         elements = new ArrayList<PhysicsElement>();
+        selected= new ArrayList<PhysicsElement>();
         view = null;
         passingTime = new Timer((int)(refreshPeriod*1000), this);
     }
     
     /**
-     * Añade un elemento físico a la vista y además actualiza la misma.
+     * Anade un elemento fisico a la vista y ademas actualiza la misma.
      * 
-     * @param e el elemento físico a agregar 
+     * @param e el elemento fisico a agregar 
      */
     public void addElement(PhysicsElement e) {
         elements.add(e);
@@ -70,7 +73,7 @@ public class MyWorld implements ActionListener {
     }
     
     /**
-     * Inicia el paso del tiempo en caso de que no esté pasando ya.
+     * Inicia el paso del tiempo en caso de que no este pasando ya.
      */
     public void start() {
         if(passingTime.isRunning()) return;
@@ -85,9 +88,9 @@ public class MyWorld implements ActionListener {
     }
     
     /**
-     * Llama a computar los estados físicos de los elementos que estén en el mundo y 
+     * Llama a computar los estados fisicos de los elementos que esten en el mundo y 
      *
-     * @param event es un evento generado por timer pero que no se utiliza en el método.
+     * @param event es un evento generado por timer pero que no se utiliza en el metodo.
      */
     public void actionPerformed (ActionEvent event) {  // like simulate method of Assignment 1,
         double nextStop=t+refreshPeriod;                // the arguments are attributes here.
@@ -107,7 +110,7 @@ public class MyWorld implements ActionListener {
     }
     
     /**
-     * Llama al método repaintView para actualizar la vista del mundo.
+     * Llama al metodo repaintView para actualizar la vista del mundo.
      */
     public void repaintView(){
         view.repaintView();
@@ -117,7 +120,7 @@ public class MyWorld implements ActionListener {
      * Revisa si el elemento entregado por argumento es instancia de colisionable.
      * 
      * @param me el elemento a revisar
-     * @return nulo en caso de que no sea colisionable y el elemento físico en caso de que lo sea.
+     * @return nulo en caso de que no sea colisionable y el elemento fisico en caso de que lo sea.
      */
     public Collidable findCollidingElement(PhysicsElement me) {
         Collidable coli;
@@ -132,9 +135,9 @@ public class MyWorld implements ActionListener {
     }
     
     /**
-     * Llama al método para actualizar la vista de todos los elementos físicos del mundo.
+     * Llama al metodo para actualizar la vista de todos los elementos fisicos del mundo.
      * 
-     * @param g el elemento gráfico en donde se actualizarán los elementos.
+     * @param g el elemento grafico en donde se actualizaran los elementos.
      */
     public void updateView(Graphics2D g){
         for (PhysicsElement e: elements)
@@ -142,44 +145,70 @@ public class MyWorld implements ActionListener {
     }
     
     /**
-     * Selecciona los elementos físicos que estén en la posición entregada por argumento.
+     * Selecciona los elementos fisicos que esten en la posicion entregada por argumento.
      * 
-     * @param x posición x a revisar.
-     * @param y posición y a revisar.
+     * @param x posicion x a revisar.
+     * @param y posicion y a revisar.
      */
     public void findSelection(double x, double y){
         if(!passingTime.isRunning()){
-            for (PhysicsElement e: elements){
-                if( e.contains(x, y) )
-                    e.setSelected();
+            //for (PhysicsElement e: elements){
+            selected.clear();
+            contador_selected=0;
+            for(int i=0; i < elements.size(); i++){
+                if( elements.get(i).contains(x, y) ){
+                    elements.get(i).setSelected();
+                    selected.add(elements.get(i));
+                    selected.get(0).setEspSelected();
+                }   
+                    
                 else{
-                    e.setReleased();
+                    elements.get(i).setReleased();
                 }
             }
+
             repaintView();
         }
     }
     
     /**
-     * Mueve el elemento físico a una nueva posición.
-     * @param x posición en el eje de las x
-     * @param y posición en el eje de las y
+     * Mueve el elemento fisico a una nueva posicion.
+     * @param x posicion en el eje de las x
+     * @param y posicion en el eje de las y
      */
+    
     public void moveSelection(double x, double y){
         if(!passingTime.isRunning()){
-            for (PhysicsElement e: elements){
-                if(e.getIsSelected()){
-                    e.dragTo(x);
-                }
+            if(!selected.isEmpty()){
+                selected.get(contador_selected).dragTo(x);
             }
             repaintView();
         }
     }
-    
+
     /**
-     * Revisa si al word le está transcurriendo el tiempo.
+     * Cambia el objeto que esta siendo elegido para moverse.
      * 
-     * @return true si es que está corriendo y false en caso contrario. 
+     * @return true si es que esta corriendo y false en caso contrario. 
+     */
+    public void changeSelection(){
+        //String data = JOptionPane.showInputDialog("contador: "+contador_selected+"   selected.size(): "+ selected.size() );
+        contador_selected++;
+        if(contador_selected >= selected.size()){
+            contador_selected=0;
+        }
+        for(int i=0; i < selected.size(); i++){
+                selected.get(i).setSelected();
+            }
+        selected.get(contador_selected).setEspSelected();
+
+        repaintView();
+    }
+
+    /**
+     * Revisa si al word le esta transcurriendo el tiempo.
+     * 
+     * @return true si es que esta corriendo y false en caso contrario. 
      */
     public boolean getIsRunning(){
         return passingTime.isRunning();

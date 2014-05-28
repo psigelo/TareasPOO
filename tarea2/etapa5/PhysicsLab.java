@@ -26,10 +26,10 @@ final class PhysicsLab_GUI extends JFrame {
         world.repaintView();
     }
     /**
-     * Crea el menú superior de la aplicación. Además le asigna un listener al mismo.
+     * Crea el menu superior de la aplicacion. Ademas le asigna un listener al mismo.
      * 
-     * @param menu_l el listener que será asignado al menú que se creará.
-     * @return el menú creado.
+     * @param menu_l el listener que sera asignado al menu que se creara.
+     * @return el menu creado.
      */
     public JMenuBar createLabMenuBar(LabMenuListener menu_l) {
         JMenuBar mb = new JMenuBar();

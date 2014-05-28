@@ -41,4 +41,8 @@ public class BlockView {
 		g.setColor(color);
 		g.fill(shape);
 	}
+
+	public void setEspSelected(){
+		color = Color.LIGHT_GRAY;
+	}
 }

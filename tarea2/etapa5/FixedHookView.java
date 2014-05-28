@@ -46,4 +46,8 @@ public class FixedHookView {
     public boolean getIsSelected(){
         return isSelected;
     }
+
+    public void setEspSelected(){
+        color = Color.LIGHT_GRAY;
+    }
 }
