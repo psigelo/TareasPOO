@@ -105,4 +105,4 @@ clean:
 
 
 doc:
-	javadoc *.java
+	javadoc -d Documentacion_Generada *.java
