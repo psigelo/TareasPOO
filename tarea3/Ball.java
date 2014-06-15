@@ -97,4 +97,8 @@ public class Ball extends PhysicsElement implements Simulateable, SpringAttachab
    public void detachSpring(Spring s){
      springs.remove(s);
    }
+
+   public double getKineticEnergy(){
+      return 0.5*mass*speed_t*speed_t;
+   }
 }

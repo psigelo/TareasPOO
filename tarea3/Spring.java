@@ -74,6 +74,16 @@ public class Spring extends PhysicsElement {
       if ((ball==a_end)^(a_pos<b_pos)) return -force;
       return force;
    }
+   public double getPotentialEnergy(){
+      double potentialEnergy = 0;
+      if ((a_end == null) || (b_end == null))
+         return potentialEnergy;
+      double a_pos = getAendPosition();
+      double b_pos = getBendPosition();
+      double stretch = Math.abs(b_pos-a_pos)-restLength;
+      potentialEnergy = 0.5*stretch*stretch*stiffness;
+      return potentialEnergy;
+   }
    public void updateView (Graphics2D g){
      view.updateView(g);      
    }

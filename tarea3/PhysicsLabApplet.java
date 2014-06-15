@@ -13,10 +13,29 @@ public class PhysicsLabApplet extends JApplet {
       setJMenuBar(createLabMenuBar(menuListener));
 */
       //setSize(MyWorldView.WIDTH, MyWorldView.HEIGHT+50);  // height+50 to account for menu height
+     /* MyWorld world = new MyWorld();
+      MyWorldView  worldView = new MyWorldView(world);
+      world.setView(worldView);
+      GraphicPane graphPane = new GraphicPane(world);
+      world.setGraphicView(graphPane);
+      JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, worldView, graphPane);
+      splitPane.setDividerLocation(300);
+      add(splitPane);
+
+      LabMenuListener menuListener = new LabMenuListener(world);
+      setJMenuBar(createLabMenuBar(menuListener));
+
+*/
       MyWorld world = new MyWorld();
       MyWorldView  worldView = new MyWorldView(world);
       world.setView(worldView);
-      add(worldView);  
+
+
+      GraphicPane graphPane = new GraphicPane(world);
+      world.setGraphicView(graphPane);
+      JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, worldView, graphPane);
+      splitPane.setDividerLocation(250);
+      add(splitPane);  
       LabMenuListener menuListener = new LabMenuListener(world);
       setJMenuBar(createLabMenuBar(menuListener));
    }

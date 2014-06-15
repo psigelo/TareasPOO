@@ -60,7 +60,9 @@ CLASSES = \
         FixedHook.java \
         FixedHookView.java\
         Spring.java \
-        SpringView.java 
+        SpringView.java\
+        Collide_sound.java\
+        GraphicPane.java
 
 
 #
@@ -89,7 +91,13 @@ classes: $(CLASSES:.java=.class)
 #
 
 clean:
-	$(RM) *.class
+	$(RM) *.class *.jar
 
-Applet:
-	appletviewer index.html
+runApplet:
+	appletviewer PhysicsLab.html
+
+run: 
+	java PhysicsLab
+
+jar: default
+	jar cfe  PhysicsLab.jar PhysicsLab *.class

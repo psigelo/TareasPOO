@@ -12,6 +12,8 @@ public class MyWorld implements ActionListener {
    private double t;        // simulation time
    private double delta_t;        // in seconds
    private double refreshPeriod;  // in seconds
+   private Collide_sound collide_efect;
+   private GraphicPane gpview;
    
    public MyWorld(){
       this(System.out);  // delta_t= 0.1[ms] and refreshPeriod=200 [ms]
@@ -23,7 +25,9 @@ public class MyWorld implements ActionListener {
       delta_t = 0.00001;          // 0.01 [ms]
       elements = new ArrayList<PhysicsElement>();
       view = null;
-      passingTime = new Timer((int)(refreshPeriod*1000), this);    
+      gpview=null;
+      passingTime = new Timer((int)(refreshPeriod*1000), this);   
+      collide_efect = new Collide_sound(); 
    }
 
    public void addElement(PhysicsElement e) {
@@ -32,6 +36,9 @@ public class MyWorld implements ActionListener {
    }
    public void setView(MyWorldView view) {
       this.view = view;
+   }
+   public void setGraphicView(GraphicPane gp) {
+      this.gpview = gp;
    }
    public void setDelta_t(double delta) {
       delta_t = delta;
@@ -65,17 +72,22 @@ public class MyWorld implements ActionListener {
             }
       }
       repaintView();
+
    }
    
    public void repaintView(){
       view.repaintView();
+      gpview.repaintView();
    }
 
    public Ball findCollidingBall(Ball me) {
       for (PhysicsElement e: elements)
          if ( e instanceof Ball) {
             Ball b = (Ball) e;
-            if ((b!=me) && b.collide(me)) return b;
+            if ((b!=me) && b.collide(me)) {
+               collide_efect.sonar();
+               return b;
+            }
          }
       return null;
    }

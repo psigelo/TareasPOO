@@ -6,6 +6,9 @@ import java.awt.*;
 import java.util.*;
 
 public class MyWorldView extends JPanel { 
+
+  
+
 // BEGIN declarations to use metric coordinate system (not pixels)
    public static int WIDTH = 900;  // in pixels
    public static int HEIGHT = 150; // in pixels
