@@ -87,4 +87,7 @@ public class Elastic extends PhysicsElement {
 		return view.getIsSelected();
 	}
 	
+	public void setEspSelected(){
+		
+	}
 }

@@ -105,4 +105,8 @@ clean:
 
 
 doc:
+<<<<<<< HEAD
 	javadoc *.java
+=======
+	javadoc -d Documentacion_Generada *.java
+>>>>>>> b874d6275ccaf42a5e93156bc37a9f5561e696fc

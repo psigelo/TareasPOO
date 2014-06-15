@@ -95,4 +95,7 @@ public class FixedHook extends PhysicsElement implements Collidable, SpringAttac
 	public boolean getIsSelected(){
 		return view.getIsSelected();
 	}
+	public void setEspSelected(){
+		view.setEspSelected();
+	}
 }

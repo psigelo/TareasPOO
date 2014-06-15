@@ -41,7 +41,11 @@ public class MyWorldView extends JPanel {
 	public MyWorldView(MyWorld w){
 		world = w;
 		addMouseMotionListener(new MouseMotionHandler(world));
+<<<<<<< HEAD
       	addKeyListener(new KeyHandler(world));
+=======
+		addKeyListener(new KeyHandler(world));
+>>>>>>> b874d6275ccaf42a5e93156bc37a9f5561e696fc
       	setFocusable(true);
 	}
 	public void repaintView(){
@@ -89,6 +93,7 @@ public class MyWorldView extends JPanel {
    			
    		}
    		
+<<<<<<< HEAD
       public void keyPressed(KeyEvent event)
       {  
       	//JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
@@ -96,6 +101,9 @@ public class MyWorldView extends JPanel {
 
          //JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
       }
+=======
+      public void keyPressed(KeyEvent event){}
+>>>>>>> b874d6275ccaf42a5e93156bc37a9f5561e696fc
       public void keyReleased(KeyEvent event) {
       	//JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
       	char keyChar = event.getKeyChar();
@@ -105,6 +113,7 @@ public class MyWorldView extends JPanel {
          }
       }
 	
+<<<<<<< HEAD
       public void keyTyped(KeyEvent event)
       {  
          
@@ -112,4 +121,9 @@ public class MyWorldView extends JPanel {
    }
 
 
+=======
+      public void keyTyped(KeyEvent event) { }
+   }
+
+>>>>>>> b874d6275ccaf42a5e93156bc37a9f5561e696fc
 }
