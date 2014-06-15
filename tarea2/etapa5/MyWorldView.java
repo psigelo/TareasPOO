@@ -8,6 +8,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 
+
 public class MyWorldView extends JPanel {
 	// BEGIN declarations to use metric coordinate system (not pixels)
 	public static int WIDTH = 900;  // in pixels
@@ -40,6 +41,8 @@ public class MyWorldView extends JPanel {
 	public MyWorldView(MyWorld w){
 		world = w;
 		addMouseMotionListener(new MouseMotionHandler(world));
+      	addKeyListener(new KeyHandler(world));
+      	setFocusable(true);
 	}
 	public void repaintView(){
 		repaint();
@@ -77,5 +80,36 @@ public class MyWorldView extends JPanel {
       
       }
    }
+
+   private class KeyHandler implements KeyListener
+   {  
+   		private MyWorld world;
+   		public KeyHandler(MyWorld w){
+   			world = w;
+   			
+   		}
+   		
+      public void keyPressed(KeyEvent event)
+      {  
+      	//JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
+         //int keyCode = event.getKeyCode();
+
+         //JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
+      }
+      public void keyReleased(KeyEvent event) {
+      	//JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
+      	char keyChar = event.getKeyChar();
+         if(keyChar == 'n' || keyChar == 'N'){
+         	//JOptionPane.showMessageDialog(null, "Debe estar en stop", "Debe estar en stop", JOptionPane.ERROR_MESSAGE);
+         	world.changeSelection();
+         }
+      }
+	
+      public void keyTyped(KeyEvent event)
+      {  
+         
+      }
+   }
+
 
 }

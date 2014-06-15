@@ -25,7 +25,7 @@ public class LabMenuListener implements ActionListener {
 			double position = 0.0;  // 1 [m]
 			double speed = 0.0;     // 0.5 [m/s]
 			double gravity        = 9.8;                              // 9.8 [m/s^2]
-			double coeficiente_rose_b1 = 0.01;
+			double coeficiente_rose_b1 = 0.03;
 			Ball b0 				= new Ball(mass, radius, position + 0.9, speed);
 			world.addElement(b0);
 		}
@@ -39,7 +39,7 @@ public class LabMenuListener implements ActionListener {
 			double position = 0.0;  // 1 [m]
 			double speed = 0.0;     // 0.5 [m/s]
 			double gravity        = 9.8;                              // 9.8 [m/s^2]
-			double coeficiente_rose_b1 = 0.01;
+			double coeficiente_rose_b1 = 0.03;
 			Spring spring         	= new Spring(1.0, 1.0);
 			while(true){
 				String data = JOptionPane.showInputDialog("En el extremo izquierdo usar: (ball, block, hook)");
@@ -93,7 +93,7 @@ public class LabMenuListener implements ActionListener {
 			double position = 0.0;  // 1 [m]
 			double speed = 0.0;     // 0.5 [m/s]
 			double gravity        = 9.8;                              // 9.8 [m/s^2]
-			double coeficiente_rose_b1 = 0.01;
+			double coeficiente_rose_b1 = 0.03;
 			Elastic elastic         	= new Elastic(1.0, 1.0);
 			while(true){
 				String data = JOptionPane.showInputDialog("En el extremo izquierdo usar: (ball, block, hook)");
@@ -147,7 +147,7 @@ public class LabMenuListener implements ActionListener {
 			double position = 0.0;  // 1 [m]
 			double speed = 0.0;     // 0.5 [m/s]
 			double gravity        = 9.8;                              // 9.8 [m/s^2]
-			double coeficiente_rose_b1 = 0.01;
+			double coeficiente_rose_b1 = 0.03;
 			Block b1               	= new Block(1.7, radius, mass, gravity, coeficiente_rose_b1);
 			world.addElement(b1);
 		}

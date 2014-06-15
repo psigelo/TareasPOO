@@ -47,8 +47,12 @@ CLASSES = \
         MyWorld.java \
         PhysicsElement.java \
         Ball.java \
-        Collidable.java \
-        Computable.java \
+        NextKeyListener.java\
+        MouseListener.java\
+        PhysicsLabApplet.java\
+        Simulateable.java \
+        Oscillator.java\
+        OscillatorView.java\
         SpringAttachable.java \
         BallView.java \
         LabMenuListener.java \
@@ -56,18 +60,8 @@ CLASSES = \
         FixedHook.java \
         FixedHookView.java\
         Spring.java \
-        SpringView.java \
-        Block.java \
-        BlockView.java \
-        Elastic.java \
-        ElasticView.java \
-        ElasticAttachable.java
+        SpringView.java 
 
-#
-# MAIN is a variable with the name of the file containing the main method
-#
-
-MAIN = PhysicsLab 
 
 #
 # the default make target entry
@@ -87,12 +81,6 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 
-# Next two lines contain a target for running the program
-# Remember the tab in the second line.
-# $(JMV) y $(MAIN) are replaced by their values
-
-run: 
-	$(JVM) $(MAIN) 
 
 # this line is to remove all unneeded files from
 # the directory when we are finished executing(saves space)
@@ -103,6 +91,5 @@ run:
 clean:
 	$(RM) *.class
 
-
-doc:
-	javadoc *.java
+Applet:
+	appletviewer index.html

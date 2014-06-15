@@ -11,6 +11,8 @@ public class MyWorld implements ActionListener {
 	private PrintStream out;
 	
 	private ArrayList<PhysicsElement> elements;  // array to hold everything in my world.
+	private ArrayList<PhysicsElement> selected;
+	private int contador_selected;
 	private MyWorldView view;   // NEW
 	private Timer passingTime;   // NEW
 	private double t;        // simulation time
@@ -26,6 +28,7 @@ public class MyWorld implements ActionListener {
 		refreshPeriod = 0.06;      // 60 [ms]
 		delta_t = 0.00001;          // 0.01 [ms]
 		elements = new ArrayList<PhysicsElement>();
+		selected= new ArrayList<PhysicsElement>();
 		view = null;
 		passingTime = new Timer((int)(refreshPeriod*1000), this);
 	}
@@ -95,30 +98,53 @@ public class MyWorld implements ActionListener {
 	
 	public void findSelection(double x, double y){
 		if(!passingTime.isRunning()){
-			for (PhysicsElement e: elements){
-
-				
-				if( e.contains(x, y) )	
-					e.setSelected();
+			//for (PhysicsElement e: elements){
+			selected.clear();
+			contador_selected=0;
+			for(int i=0; i < elements.size(); i++){
+				if( elements.get(i).contains(x, y) ){
+					elements.get(i).setSelected();
+					selected.add(elements.get(i));
+				}	
+					
 				else{
-					e.setReleased();
+					elements.get(i).setReleased();
 				}
 			}
 			repaintView();
+			//String data = JOptionPane.showInputDialog("contador: "+contador_selected+"   selected.size(): "+ selected.size() );
 		}
 	}
 
 	public void moveSelection(double x, double y){
 		if(!passingTime.isRunning()){
-			for (PhysicsElement e: elements){
+			/*
+			//for (PhysicsElement e: elements){
+			for (PhysicsElement e: selected){
 				if(e.getIsSelected()){
 					e.dragTo(x);
 				}
+
 			}
+			*/
+			
+			if(!selected.isEmpty()){
+				selected.get(contador_selected).dragTo(x);
+				
+			}
+			
 			repaintView();
+			
 		}
 	}
+	public void changeSelection(){
+		//String data = JOptionPane.showInputDialog("contador: "+contador_selected+"   selected.size(): "+ selected.size() );
+		contador_selected++;
+		if(contador_selected >= selected.size()){
+			contador_selected=0;
+		}
 
+	}
 	public boolean getIsRunning(){
 		return passingTime.isRunning();
 	}
