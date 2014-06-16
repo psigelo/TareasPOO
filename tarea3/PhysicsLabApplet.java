@@ -1,38 +1,21 @@
 import javax.swing.*;
 import java.awt.Container;
 import java.applet.*;
+import java.awt.event.*; 
 
-public class PhysicsLabApplet extends JApplet {
-  // public static void main(String[] args) {
+public class PhysicsLabApplet extends JApplet implements ActionListener {
+
+   private MyWorld world= new MyWorld();
+
    public void init(){ 
-   		/*MyWorld world = new MyWorld();
-   		MyWorldView  worldView = new MyWorldView(world);
-      Container contentPane = getContentPane();
-      contentPane.add(worldView);
-      LabMenuListener menuListener = new LabMenuListener(world);
-      setJMenuBar(createLabMenuBar(menuListener));
-*/
-      //setSize(MyWorldView.WIDTH, MyWorldView.HEIGHT+50);  // height+50 to account for menu height
-     /* MyWorld world = new MyWorld();
       MyWorldView  worldView = new MyWorldView(world);
       world.setView(worldView);
       GraphicPane graphPane = new GraphicPane(world);
       world.setGraphicView(graphPane);
-      JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, worldView, graphPane);
-      splitPane.setDividerLocation(300);
-      add(splitPane);
 
-      LabMenuListener menuListener = new LabMenuListener(world);
-      setJMenuBar(createLabMenuBar(menuListener));
+      world.setDelta_t(Double.parseDouble(getParameter("deltaTime")));
+      world.setRefreshPeriod (Double.parseDouble(getParameter("refreshTime"))); 
 
-*/
-      MyWorld world = new MyWorld();
-      MyWorldView  worldView = new MyWorldView(world);
-      world.setView(worldView);
-
-
-      GraphicPane graphPane = new GraphicPane(world);
-      world.setGraphicView(graphPane);
       JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, worldView, graphPane);
       splitPane.setDividerLocation(250);
       add(splitPane);  
@@ -61,7 +44,7 @@ public class PhysicsLabApplet extends JApplet {
       menuItem.addActionListener(menu_l);
       subMenu.add(menuItem);
       menuItem = new JMenuItem("My scenario");
-      menuItem.addActionListener(menu_l);
+      menuItem.addActionListener(this);
       subMenu.add(menuItem);
   
       menu = new JMenu("MyWorld");
@@ -82,4 +65,41 @@ public class PhysicsLabApplet extends JApplet {
       menu.add(subMenu);      
       return mb;          
    } 
+
+
+   public void actionPerformed(ActionEvent e) {
+      JMenuItem menuItem = (JMenuItem)(e.getSource());
+      String text = menuItem.getText();
+      
+      if (text.equals("My scenario")) {  // here you define Etapa2's configuration
+         final int fixedHookNum = Integer.parseInt(getParameter("fixedHookNum"));
+         final int ballNum = Integer.parseInt(getParameter("ballNum"));
+         final int oscillatorNum = Integer.parseInt(getParameter("oscillatorNum"));
+
+         int i = 0;
+         for (i=0; i < fixedHookNum ; i++) {
+            String  inputStr = getParameter("fixedHook." + String.valueOf(i+1)); 
+            double position = Double.parseDouble(inputStr.split(";")[0]); 
+            world.addElement(new FixedHook(position));
+         }
+
+         for (i=0; i < ballNum ; i++) {
+            String  inputStr = getParameter("ball." + String.valueOf(i+1)); 
+            double mass= Double.parseDouble(inputStr.split(";")[0]);
+            double radius= Double.parseDouble(inputStr.split(";")[1]);
+            double position= Double.parseDouble(inputStr.split(";")[2]);
+            double speed= Double.parseDouble(inputStr.split(";")[3]); 
+            world.addElement(new Ball(mass, radius, position, speed));
+         }
+
+
+         for (i=0; i < oscillatorNum ; i++) {
+            String  inputStr = getParameter("oscillator." + String.valueOf(i+1));
+            double position= Double.parseDouble(inputStr.split(";")[0]);
+            double amplitude= Double.parseDouble(inputStr.split(";")[1]);
+            double frecuently= Double.parseDouble(inputStr.split(";")[2]);
+            world.addElement(new Oscillator(position,amplitude,frecuently));
+         }
+      }
+   }
 }

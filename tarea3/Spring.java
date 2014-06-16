@@ -82,7 +82,7 @@ public class Spring extends PhysicsElement {
       double b_pos = getBendPosition();
       double stretch = Math.abs(b_pos-a_pos)-restLength;
       potentialEnergy = 0.5*stretch*stretch*stiffness;
-      return potentialEnergy;
+      return 5*potentialEnergy;
    }
    public void updateView (Graphics2D g){
      view.updateView(g);      

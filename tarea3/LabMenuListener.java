@@ -2,7 +2,7 @@ import java.awt.event.*;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-public class LabMenuListener implements ActionListener {
+public class LabMenuListener implements ActionListener  {
    private MyWorld  world;
    public LabMenuListener (MyWorld  w){
       world = w;

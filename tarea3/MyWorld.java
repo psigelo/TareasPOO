@@ -72,7 +72,6 @@ public class MyWorld implements ActionListener {
             }
       }
       repaintView();
-
    }
    
    public void repaintView(){
