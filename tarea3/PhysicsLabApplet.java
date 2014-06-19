@@ -12,6 +12,9 @@ public class PhysicsLabApplet extends JApplet implements ActionListener {
       MyWorldView  worldView = new MyWorldView(world);
       world.setView(worldView);
 
+      world.setDelta_t(Double.parseDouble(getParameter("deltaTime")));
+      world.setRefreshPeriod (Double.parseDouble(getParameter("refreshTime"))); 
+      world.setPlotMaxTime(Double.parseDouble(getParameter("maxPlotTime")));
 
       GraphicPane graphPane = new GraphicPane(world);
       world.setGraphicView(graphPane);

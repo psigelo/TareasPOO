@@ -34,15 +34,18 @@ public class GraphicPane extends JPanel {
 
   int cantidad_datos_por_segundo;
   int tiempo = 0;
+  int init_time = 0;
 
 	 public GraphicPane(MyWorld w){
 		  world=w;
-      kinetic_statistics = new XYSeries("Kinetic energy");
       cantidad_datos_por_segundo = (int)(1.0/world.getRefreshPeriod());
+     
+      kinetic_statistics = new XYSeries("Kinetic energy");
       kinetic_statistics.setMaximumItemCount( (int)(world.getPlotMaxTime()/world.getRefreshPeriod()) );
       for(int i=0; i < (int)(world.getPlotMaxTime()/world.getRefreshPeriod()); i++){
         kinetic_statistics.add(tiempo++/cantidad_datos_por_segundo,0);
       }
+      
       potential_statistics = new XYSeries("Potential energy");
       potential_statistics.setMaximumItemCount( (int)(world.getPlotMaxTime()/world.getRefreshPeriod()) );
       tiempo=0;
@@ -68,18 +71,14 @@ public class GraphicPane extends JPanel {
 	    setFocusable(true);
 	    repaint();
    }
+   
 
-   public void repaintView(){
-   		repaint();
-   }
+   public void updateGraph(){
+      kinetic_statistics.add(tiempo*world.getRefreshPeriod(),calculateKineticEnergy());
+      potential_statistics.add(tiempo*world.getRefreshPeriod(),calculatePotentialEnergy());
+      mec_statistics.add(tiempo++*world.getRefreshPeriod(),calculatePotentialEnergy() + calculateKineticEnergy());
 
-   public void paintComponent(Graphics g){
-
-      kinetic_statistics.add(tiempo/(double)cantidad_datos_por_segundo,calculateKineticEnergy());
-      potential_statistics.add(tiempo++/(double)cantidad_datos_por_segundo,calculatePotentialEnergy());
-      mec_statistics.add(tiempo++/(double)cantidad_datos_por_segundo,calculatePotentialEnergy() + calculateKineticEnergy());
-
-      if(tiempo % 20 == 0){
+      if(tiempo % (int)(0.5*(1/world.getRefreshPeriod())) == 0 || init_time++ == 0){
         JFreeChart linea_kinetic = null;
         JFreeChart linea_potential = null;
         JFreeChart linea_mec = null;
@@ -100,7 +99,6 @@ public class GraphicPane extends JPanel {
         laber_potential.setIcon(new ImageIcon(graficoLinea_potential));
         laber_mec.setIcon(new ImageIcon(graficoLinea_mec));
       }
-
    }
 
    public double calculateKineticEnergy(){

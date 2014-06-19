@@ -49,6 +49,9 @@ public class MyWorld implements ActionListener {
       refreshPeriod = rp;
       passingTime.setDelay((int)(refreshPeriod*1000)); // convert from [s] to [ms]
    }
+   public void setPlotMaxTime(double pmx){
+      plot_max_time = pmx;
+   }
    public double getRefreshPeriod(){
       return refreshPeriod;
    }
@@ -80,11 +83,12 @@ public class MyWorld implements ActionListener {
             }
       }
       repaintView();
+      gpview.updateGraph();
    }
    
    public void repaintView(){
       view.repaintView();
-      gpview.repaintView();
+      
    }
 
    public Ball findCollidingBall(Ball me) {
