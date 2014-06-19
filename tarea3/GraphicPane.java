@@ -40,9 +40,7 @@ public class GraphicPane extends JPanel {
   JFreeChart linea_potential = null;
   JFreeChart linea_mec = null;
 
-  BufferedImage graficoLinea_kinetic;
-  BufferedImage graficoLinea_potential;
-  BufferedImage graficoLinea_mec;
+  
 
 	 public GraphicPane(MyWorld w){
 		  world=w;
@@ -89,9 +87,7 @@ public class GraphicPane extends JPanel {
       linea_mec = ChartFactory.createXYLineChart("Mec. Energy","Time [s]","Mec. energy [J]",datos_mec,PlotOrientation.VERTICAL,true,true,true);
 
 
-      graficoLinea_kinetic=linea_kinetic.createBufferedImage(300, 200);
-      graficoLinea_potential=linea_potential.createBufferedImage(300, 200);
-      graficoLinea_mec=linea_mec.createBufferedImage(300, 200);
+      
 
 	    setFocusable(true);
 	    repaint();
@@ -104,7 +100,12 @@ public class GraphicPane extends JPanel {
       mec_statistics.add(tiempo++*world.getRefreshPeriod(),calculatePotentialEnergy() + calculateKineticEnergy());
 
       if(tiempo % (int)(0.25*(1/world.getRefreshPeriod())) == 0 || init_time++ == 0){
-          
+        
+
+        BufferedImage graficoLinea_kinetic=linea_kinetic.createBufferedImage(300, 200);
+        BufferedImage graficoLinea_potential=linea_potential.createBufferedImage(300, 200);
+        BufferedImage graficoLinea_mec=linea_mec.createBufferedImage(300, 200);
+  
         laber_kinetic.setIcon(new ImageIcon(graficoLinea_kinetic));
         laber_potential.setIcon(new ImageIcon(graficoLinea_potential));
         laber_mec.setIcon(new ImageIcon(graficoLinea_mec));
