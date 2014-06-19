@@ -35,7 +35,7 @@ FILE= Resultado_experimento.csv
 #
 
 .java.class:
-	$(JC) $(JFLAGS) -cp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar' $*.java
+	$(JC) $(JFLAGS) $*.java
 
 
 #
@@ -88,7 +88,7 @@ classes: $(CLASSES:.java=.class)
 # the directory when we are finished executing(saves space)
 # and "cleans up" the directory of unneeded .class files
 # RM is a predefined macro in make (RM = rm -f)
-#
+#-cp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar'
 
 clean:
 	$(RM) *.class PhysicsLab.jar
@@ -97,7 +97,7 @@ runApplet:
 	appletviewer PhysicsLab.html
 
 run: 
-	java -cp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar' PhysicsLab
+	java  PhysicsLab
 
 jar: default
-	jar cfe  PhysicsLab.jar PhysicsLab *.class -jcp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar'
+	jar cfe  PhysicsLab.jar PhysicsLab *.class org/** com/**

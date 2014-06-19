@@ -8,14 +8,13 @@ public class PhysicsLabApplet extends JApplet implements ActionListener {
    private MyWorld world= new MyWorld();
 
    public void init(){ 
+      MyWorld world = new MyWorld();
       MyWorldView  worldView = new MyWorldView(world);
       world.setView(worldView);
+
+
       GraphicPane graphPane = new GraphicPane(world);
       world.setGraphicView(graphPane);
-
-      world.setDelta_t(Double.parseDouble(getParameter("deltaTime")));
-      world.setRefreshPeriod (Double.parseDouble(getParameter("refreshTime"))); 
-
       JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, worldView, graphPane);
       splitPane.setDividerLocation(250);
       add(splitPane);  
