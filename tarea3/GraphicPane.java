@@ -79,26 +79,27 @@ public class GraphicPane extends JPanel {
       potential_statistics.add(tiempo++/(double)cantidad_datos_por_segundo,calculatePotentialEnergy());
       mec_statistics.add(tiempo++/(double)cantidad_datos_por_segundo,calculatePotentialEnergy() + calculateKineticEnergy());
 
-      JFreeChart linea_kinetic = null;
-      JFreeChart linea_potential = null;
-      JFreeChart linea_mec = null;
+      if(tiempo % 20 == 0){
+        JFreeChart linea_kinetic = null;
+        JFreeChart linea_potential = null;
+        JFreeChart linea_mec = null;
 
-      datos_kinetic = new XYSeriesCollection(kinetic_statistics);
-      datos_potential = new XYSeriesCollection(potential_statistics);
-      datos_mec = new XYSeriesCollection(mec_statistics);
+        datos_kinetic = new XYSeriesCollection(kinetic_statistics);
+        datos_potential = new XYSeriesCollection(potential_statistics);
+        datos_mec = new XYSeriesCollection(mec_statistics);
 
-      linea_kinetic = ChartFactory.createXYLineChart("Kinetic Energy","Time [s]","Kinetic energy [J]",datos_kinetic,PlotOrientation.VERTICAL,true,true,true);
-      linea_potential = ChartFactory.createXYLineChart("Potential Energy","Time [s]","Potential energy [J]",datos_potential,PlotOrientation.VERTICAL,true,true,true);
-      linea_mec = ChartFactory.createXYLineChart("Mec. Energy","Time [s]","Mec. energy [J]",datos_mec,PlotOrientation.VERTICAL,true,true,true);
+        linea_kinetic = ChartFactory.createXYLineChart("Kinetic Energy","Time [s]","Kinetic energy [J]",datos_kinetic,PlotOrientation.VERTICAL,true,true,true);
+        linea_potential = ChartFactory.createXYLineChart("Potential Energy","Time [s]","Potential energy [J]",datos_potential,PlotOrientation.VERTICAL,true,true,true);
+        linea_mec = ChartFactory.createXYLineChart("Mec. Energy","Time [s]","Mec. energy [J]",datos_mec,PlotOrientation.VERTICAL,true,true,true);
 
-      BufferedImage graficoLinea_kinetic=linea_kinetic.createBufferedImage(300, 200);
-      BufferedImage graficoLinea_potential=linea_potential.createBufferedImage(300, 200);
-      BufferedImage graficoLinea_mec=linea_mec.createBufferedImage(300, 200);
+        BufferedImage graficoLinea_kinetic=linea_kinetic.createBufferedImage(300, 200);
+        BufferedImage graficoLinea_potential=linea_potential.createBufferedImage(300, 200);
+        BufferedImage graficoLinea_mec=linea_mec.createBufferedImage(300, 200);
 
-      laber_kinetic.setIcon(new ImageIcon(graficoLinea_kinetic));
-      laber_potential.setIcon(new ImageIcon(graficoLinea_potential));
-      laber_mec.setIcon(new ImageIcon(graficoLinea_mec));
-      
+        laber_kinetic.setIcon(new ImageIcon(graficoLinea_kinetic));
+        laber_potential.setIcon(new ImageIcon(graficoLinea_potential));
+        laber_mec.setIcon(new ImageIcon(graficoLinea_mec));
+      }
 
    }
 

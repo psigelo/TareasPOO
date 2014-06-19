@@ -100,4 +100,4 @@ run:
 	java -cp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar' PhysicsLab
 
 jar: default
-	jar cfe  PhysicsLab.jar PhysicsLab *.class
+	jar cfe  PhysicsLab.jar PhysicsLab *.class -jcp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar'
