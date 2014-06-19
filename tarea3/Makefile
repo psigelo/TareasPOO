@@ -35,7 +35,7 @@ FILE= Resultado_experimento.csv
 #
 
 .java.class:
-	$(JC) $(JFLAGS) $*.java
+	$(JC) $(JFLAGS) -cp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar' $*.java
 
 
 #
@@ -91,13 +91,13 @@ classes: $(CLASSES:.java=.class)
 #
 
 clean:
-	$(RM) *.class *.jar
+	$(RM) *.class PhysicsLab.jar
 
 runApplet:
 	appletviewer PhysicsLab.html
 
 run: 
-	java PhysicsLab
+	java -cp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar' PhysicsLab
 
 jar: default
 	jar cfe  PhysicsLab.jar PhysicsLab *.class

@@ -3,20 +3,68 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.util.*;
 
-public class GraphicPane extends JPanel { 
-	private Color color = Color.BLUE;
-	private Color color2 = Color.RED;
-	private Color color3 = Color.ORANGE;
-	private Rectangle2D.Double shape = null;
-	private Rectangle2D.Double shape2 = null;
-	private Rectangle2D.Double shape3 = null;
+import javax.swing.JLabel;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+
+
+
+
+public class GraphicPane extends JPanel {
 	private MyWorld world;
+  XYSeries kinetic_statistics = null;
+  XYSeries potential_statistics = null;
+  XYSeries mec_statistics = null;
+
+  XYDataset datos_kinetic;
+  XYDataset datos_potential;
+  XYDataset datos_mec;
+
+  
+  JLabel laber_kinetic;
+  JLabel laber_potential;
+  JLabel laber_mec;
+
+  int cantidad_datos_por_segundo;
+  int tiempo = 0;
 
 	 public GraphicPane(MyWorld w){
-		world=w;
-	    shape = new Rectangle2D.Double(100, 100, 22, 22);
-	    shape2 = new Rectangle2D.Double(100, 100, 22, 22);
-	    shape3 = new Rectangle2D.Double(100, 100, 22, 22);
+		  world=w;
+      kinetic_statistics = new XYSeries("Kinetic energy");
+      cantidad_datos_por_segundo = (int)(1.0/world.getRefreshPeriod());
+      kinetic_statistics.setMaximumItemCount( (int)(world.getPlotMaxTime()/world.getRefreshPeriod()) );
+      for(int i=0; i < (int)(world.getPlotMaxTime()/world.getRefreshPeriod()); i++){
+        kinetic_statistics.add(tiempo++/cantidad_datos_por_segundo,0);
+      }
+      potential_statistics = new XYSeries("Potential energy");
+      potential_statistics.setMaximumItemCount( (int)(world.getPlotMaxTime()/world.getRefreshPeriod()) );
+      tiempo=0;
+      for(int i=0; i < (int)(world.getPlotMaxTime()/world.getRefreshPeriod()); i++){
+        potential_statistics.add(tiempo++/cantidad_datos_por_segundo,0);
+      }
+
+      mec_statistics = new XYSeries("Mec. energy");
+      mec_statistics.setMaximumItemCount( (int)(world.getPlotMaxTime()/world.getRefreshPeriod()) );
+      tiempo=0;
+      for(int i=0; i < (int)(world.getPlotMaxTime()/world.getRefreshPeriod()); i++){
+        mec_statistics.add(tiempo++/cantidad_datos_por_segundo,0);
+      }
+
+      laber_kinetic = new JLabel();
+      laber_potential = new JLabel();
+      laber_mec = new JLabel();
+
+      add(laber_kinetic);
+      add(laber_potential);
+      add(laber_mec);
+
 	    setFocusable(true);
 	    repaint();
    }
@@ -26,19 +74,32 @@ public class GraphicPane extends JPanel {
    }
 
    public void paintComponent(Graphics g){
-   	super.paintComponent(g); // it paints the background
-      Graphics2D g2 = (Graphics2D)g;
-      int factor_escalamiento = 5;
-      shape.setFrame(100, 200- (int) (factor_escalamiento*calculateKineticEnergy()), 22 , (int)(factor_escalamiento*calculateKineticEnergy()) );
-      shape2.setFrame(100 + 44, 200-(int) (factor_escalamiento*calculatePotentialEnergy()), 22 , (int) (factor_escalamiento*calculatePotentialEnergy()));
-      shape3.setFrame(100 + 88, 200-(int)(factor_escalamiento*( calculatePotentialEnergy()+calculateKineticEnergy() ) ), 22 , (int)(factor_escalamiento*( calculatePotentialEnergy()+calculateKineticEnergy() ) ));
 
-      g2.setColor(color);
-      g2.fill(shape);
-      g2.setColor(color2);
-      g2.fill(shape2);
-      g2.setColor(color3);
-      g2.fill(shape3);
+      kinetic_statistics.add(tiempo/(double)cantidad_datos_por_segundo,calculateKineticEnergy());
+      potential_statistics.add(tiempo++/(double)cantidad_datos_por_segundo,calculatePotentialEnergy());
+      mec_statistics.add(tiempo++/(double)cantidad_datos_por_segundo,calculatePotentialEnergy() + calculateKineticEnergy());
+
+      JFreeChart linea_kinetic = null;
+      JFreeChart linea_potential = null;
+      JFreeChart linea_mec = null;
+
+      datos_kinetic = new XYSeriesCollection(kinetic_statistics);
+      datos_potential = new XYSeriesCollection(potential_statistics);
+      datos_mec = new XYSeriesCollection(mec_statistics);
+
+      linea_kinetic = ChartFactory.createXYLineChart("Kinetic Energy","Time [s]","Kinetic energy [J]",datos_kinetic,PlotOrientation.VERTICAL,true,true,true);
+      linea_potential = ChartFactory.createXYLineChart("Potential Energy","Time [s]","Potential energy [J]",datos_potential,PlotOrientation.VERTICAL,true,true,true);
+      linea_mec = ChartFactory.createXYLineChart("Mec. Energy","Time [s]","Mec. energy [J]",datos_mec,PlotOrientation.VERTICAL,true,true,true);
+
+      BufferedImage graficoLinea_kinetic=linea_kinetic.createBufferedImage(300, 200);
+      BufferedImage graficoLinea_potential=linea_potential.createBufferedImage(300, 200);
+      BufferedImage graficoLinea_mec=linea_mec.createBufferedImage(300, 200);
+
+      laber_kinetic.setIcon(new ImageIcon(graficoLinea_kinetic));
+      laber_potential.setIcon(new ImageIcon(graficoLinea_potential));
+      laber_mec.setIcon(new ImageIcon(graficoLinea_mec));
+      
+
    }
 
    public double calculateKineticEnergy(){

@@ -12,6 +12,7 @@ public class MyWorld implements ActionListener {
    private double t;        // simulation time
    private double delta_t;        // in seconds
    private double refreshPeriod;  // in seconds
+   private double plot_max_time;
    private Collide_sound collide_efect;
    private GraphicPane gpview;
    
@@ -21,8 +22,9 @@ public class MyWorld implements ActionListener {
    public MyWorld(PrintStream output){
       out = output;
       t = 0;
-      refreshPeriod = 0.03;      // 60 [ms]
-      delta_t = 0.00001;          // 0.01 [ms]
+      refreshPeriod = 0.03;      
+      delta_t = 0.00001;      
+      plot_max_time = 30.0;    
       elements = new ArrayList<PhysicsElement>();
       view = null;
       gpview=null;
@@ -46,6 +48,12 @@ public class MyWorld implements ActionListener {
    public void setRefreshPeriod (double rp) {
       refreshPeriod = rp;
       passingTime.setDelay((int)(refreshPeriod*1000)); // convert from [s] to [ms]
+   }
+   public double getRefreshPeriod(){
+      return refreshPeriod;
+   }
+   public double getPlotMaxTime(){
+      return plot_max_time;
    }
    public void start() {
       if(passingTime.isRunning()) return;
@@ -115,4 +123,6 @@ public class MyWorld implements ActionListener {
             if (e.contains(x,0)) return (SpringAttachable)e;
       return null;
    }  
+
+
 } 
