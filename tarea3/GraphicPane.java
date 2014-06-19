@@ -102,9 +102,9 @@ public class GraphicPane extends JPanel {
       if(tiempo % (int)(0.25*(1/world.getRefreshPeriod())) == 0 || init_time++ == 0){
         
 
-        BufferedImage graficoLinea_kinetic=linea_kinetic.createBufferedImage(300, 200);
-        BufferedImage graficoLinea_potential=linea_potential.createBufferedImage(300, 200);
-        BufferedImage graficoLinea_mec=linea_mec.createBufferedImage(300, 200);
+        BufferedImage graficoLinea_kinetic=linea_kinetic.createBufferedImage(280, 200);
+        BufferedImage graficoLinea_potential=linea_potential.createBufferedImage(280, 200);
+        BufferedImage graficoLinea_mec=linea_mec.createBufferedImage(280, 200);
   
         laber_kinetic.setIcon(new ImageIcon(graficoLinea_kinetic));
         laber_potential.setIcon(new ImageIcon(graficoLinea_potential));
