@@ -128,5 +128,8 @@ public class MyWorldApplet extends MyWorld   implements ActionListener {
       return null;
    }  
 
+   public void resetPlot(){
+      gpview.resetPlot();
+   }
 
 } 
