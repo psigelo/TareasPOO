@@ -99,6 +99,6 @@ public class Ball extends PhysicsElement implements Simulateable, SpringAttachab
    }
 
    public double getKineticEnergy(){
-      return 5*0.5*mass*speed_t*speed_t;
+      return 0.5*mass*speed_t*speed_t;
    }
 }
