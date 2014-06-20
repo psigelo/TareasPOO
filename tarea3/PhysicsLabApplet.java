@@ -6,16 +6,17 @@ import java.net.URL;
 
 public class PhysicsLabApplet extends JApplet implements ActionListener {
 
-   private MyWorldApplet world = null;
+   MyWorldApplet world = null;
    protected URL codeBase = null;
    AudioClip returnClip=null;
+
    public void init(){ 
 
      codeBase = getCodeBase();
      returnClip = getAudioClip(codeBase, "collide_example.wav");
 
 
-      MyWorldApplet world = new MyWorldApplet(returnClip);
+      world = new MyWorldApplet(returnClip);
       MyWorldView  worldView = new MyWorldView(world);
       world.setView(worldView);
 
@@ -79,11 +80,12 @@ public class PhysicsLabApplet extends JApplet implements ActionListener {
    public void actionPerformed(ActionEvent e) {
       JMenuItem menuItem = (JMenuItem)(e.getSource());
       String text = menuItem.getText();
-      
+      final int fixedHookNum  = Integer.parseInt(getParameter("fixedHookNum"));
+      final int ballNum       = Integer.parseInt(getParameter("ballNum"));
+      final int oscillatorNum = Integer.parseInt(getParameter("oscillatorNum"));
+
       if (text.equals("My scenario")) {  // here you define Etapa2's configuration
-         final int fixedHookNum  = Integer.parseInt(getParameter("fixedHookNum"));
-         final int ballNum       = Integer.parseInt(getParameter("ballNum"));
-         final int oscillatorNum = Integer.parseInt(getParameter("oscillatorNum"));
+         
 
          int i = 0;
          for (i=0; i < fixedHookNum ; i++) {

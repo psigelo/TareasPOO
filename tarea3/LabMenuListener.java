@@ -13,7 +13,6 @@ public class LabMenuListener implements ActionListener  {
       
       // Actions associated to main manu options
       if (text.equals("My scenario")) {  // here you define Etapa2's configuration
-       // to be coded
          double mass = 1.0;      // 1 [kg] 
          double radius = 0.1;    // 10 [cm] 
          double position = 1.0;  // 1 [m] 
@@ -48,7 +47,6 @@ public class LabMenuListener implements ActionListener  {
          world.setDelta_t(Double.parseDouble(data));
       }
       if (text.equals("View Refresh time")) {
-         // to be coded
          String data = JOptionPane.showInputDialog("Enter view refresh time [s]");
          world.setRefreshPeriod(Double.parseDouble(data));
       }

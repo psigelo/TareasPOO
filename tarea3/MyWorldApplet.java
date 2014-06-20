@@ -3,10 +3,10 @@ import java.io.*;
 import javax.swing.Timer;
 import java.awt.event.*;
 import java.applet.*;
+import javax.swing.*;
 
 public class MyWorldApplet extends MyWorld   implements ActionListener {
-   private PrintStream out;
-   
+   //private PrintStream out;
    private ArrayList<PhysicsElement> elements;  // array to hold everything in my world.
    private MyWorldView view;   // NEW
    private Timer passingTime;   // NEW
