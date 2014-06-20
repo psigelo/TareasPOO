@@ -1,9 +1,15 @@
 import javax.swing.*;
 import javax.sound.sampled.*;
 import java.io.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
 
-public class Collide_sound extends JFrame
+
+public class Collide_sound 
 {
+	 
+		
 	private File sf;
 	private AudioFileFormat aff;
 	private AudioInputStream ais;
@@ -14,7 +20,7 @@ public class Collide_sound extends JFrame
 	public Collide_sound()
 	{
 
-		sf=new File("collide_example.wav");
+		sf=new File("./collide_example.wav");
 
 
 		try
@@ -45,5 +51,9 @@ public class Collide_sound extends JFrame
 	public void sonar(){
 		ol.loop(1);
 	}
+
+	
+
+
 
 }

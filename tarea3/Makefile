@@ -61,8 +61,10 @@ CLASSES = \
         FixedHookView.java\
         Spring.java \
         SpringView.java\
-        Collide_sound.java\
-        GraphicPane.java
+        GraphicPane.java\
+        Collide_sound.java \
+        MyWorldApplet.java 
+
 
 
 #
@@ -92,12 +94,15 @@ classes: $(CLASSES:.java=.class)
 
 clean:
 	$(RM) *.class PhysicsLab.jar
+	$(RM) -r org com META-INF
 
 runApplet:
 	appletviewer PhysicsLab.html
 
 run: 
-	java  PhysicsLab
+	java  -cp '.:jfreechart-1.0.17.jar:jcommon-1.0.21.jar' PhysicsLab
 
 jar: default
+	jar xf jfreechart-1.0.17.jar
+	jar xf jcommon-1.0.21.jar
 	jar cfe  PhysicsLab.jar PhysicsLab *.class org/** com/**

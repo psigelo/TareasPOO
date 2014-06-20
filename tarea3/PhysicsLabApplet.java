@@ -2,13 +2,20 @@ import javax.swing.*;
 import java.awt.Container;
 import java.applet.*;
 import java.awt.event.*; 
+import java.net.URL;
 
 public class PhysicsLabApplet extends JApplet implements ActionListener {
 
-   private MyWorld world= new MyWorld();
-
+   private MyWorldApplet world = null;
+   protected URL codeBase = null;
+   AudioClip returnClip=null;
    public void init(){ 
-      MyWorld world = new MyWorld();
+
+     codeBase = getCodeBase();
+     returnClip = getAudioClip(codeBase, "collide_example.wav");
+
+
+      MyWorldApplet world = new MyWorldApplet(returnClip);
       MyWorldView  worldView = new MyWorldView(world);
       world.setView(worldView);
 
@@ -25,7 +32,7 @@ public class PhysicsLabApplet extends JApplet implements ActionListener {
       setJMenuBar(createLabMenuBar(menuListener));
    }
 
-   public JMenuBar createLabMenuBar(LabMenuListener menu_l) {
+   public JMenuBar createLabMenuBar(LabMenuListener    menu_l) {
       JMenuBar mb = new JMenuBar();
       
       JMenu menu = new JMenu ("Configuration");
@@ -74,8 +81,8 @@ public class PhysicsLabApplet extends JApplet implements ActionListener {
       String text = menuItem.getText();
       
       if (text.equals("My scenario")) {  // here you define Etapa2's configuration
-         final int fixedHookNum = Integer.parseInt(getParameter("fixedHookNum"));
-         final int ballNum = Integer.parseInt(getParameter("ballNum"));
+         final int fixedHookNum  = Integer.parseInt(getParameter("fixedHookNum"));
+         final int ballNum       = Integer.parseInt(getParameter("ballNum"));
          final int oscillatorNum = Integer.parseInt(getParameter("oscillatorNum"));
 
          int i = 0;

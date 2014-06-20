@@ -33,6 +33,7 @@ Ejecución del programa en modo local: java PhysicsLab
 Compilación como applet: javac PhysicsLabApplet.java
 
 
-
+OBSERVACIONES:
+ Los .class que son subidos al github corresponden a implementaciones anexas al proyecto, más bien son de jfreechart y no son parte de éste proyecto por lo que para el correcto funcionamiento de éste es necesario que las clases estén.
 
 
