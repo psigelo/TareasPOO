@@ -62,6 +62,9 @@ class PhysicsLab_GUI extends JFrame {
       menuItem = new JMenuItem("Stop");
       menuItem.addActionListener(menu_l);
       menu.add(menuItem);
+      menuItem = new JMenuItem("ResetPlot");
+      menuItem.addActionListener(menu_l);
+      menu.add(menuItem);
       subMenu = new JMenu("Simulator");
       menuItem = new JMenuItem("Delta time");
       menuItem.addActionListener(menu_l);

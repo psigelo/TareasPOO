@@ -48,23 +48,17 @@ public class GraphicPane extends JPanel {
      
       kinetic_statistics = new XYSeries("Kinetic energy");
       kinetic_statistics.setMaximumItemCount( (int)(world.getPlotMaxTime()/world.getRefreshPeriod()) );
-      for(int i=0; i < (int)(world.getPlotMaxTime()/world.getRefreshPeriod()); i++){
-        kinetic_statistics.add(tiempo++/cantidad_datos_por_segundo,0);
-      }
+      
       
       potential_statistics = new XYSeries("Potential energy");
       potential_statistics.setMaximumItemCount( (int)(world.getPlotMaxTime()/world.getRefreshPeriod()) );
       tiempo=0;
-      for(int i=0; i < (int)(world.getPlotMaxTime()/world.getRefreshPeriod()); i++){
-        potential_statistics.add(tiempo++/cantidad_datos_por_segundo,0);
-      }
+      
 
       mec_statistics = new XYSeries("Mec. energy");
       mec_statistics.setMaximumItemCount( (int)(world.getPlotMaxTime()/world.getRefreshPeriod()) );
       tiempo=0;
-      for(int i=0; i < (int)(world.getPlotMaxTime()/world.getRefreshPeriod()); i++){
-        mec_statistics.add(tiempo++/cantidad_datos_por_segundo,0);
-      }
+     
 
       laber_kinetic = new JLabel();
       laber_potential = new JLabel();
@@ -114,7 +108,7 @@ public class GraphicPane extends JPanel {
    }
 
    public double calculateKineticEnergy(){
-   		int resultado = 0;
+   		double resultado = 0.0;
    		ArrayList<PhysicsElement> elements = world.getPhysicsElements();
      	 for (PhysicsElement e:elements){
      	 	if( e instanceof Ball){
@@ -127,7 +121,7 @@ public class GraphicPane extends JPanel {
    }
 
    public double calculatePotentialEnergy(){
-   		int resultado = 0;
+   		double resultado = 0.0;
    		ArrayList<PhysicsElement> elements = world.getPhysicsElements();
      	 for (PhysicsElement e:elements){
      	 	
@@ -138,6 +132,13 @@ public class GraphicPane extends JPanel {
      	 }
          
          return resultado;
+   }
+
+   public void resetPlot(){
+      kinetic_statistics.clear();
+      potential_statistics.clear();
+      mec_statistics.clear();
+      tiempo=0;
    }
 
 }

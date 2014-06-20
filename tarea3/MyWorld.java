@@ -128,5 +128,9 @@ public class MyWorld implements ActionListener {
       return null;
    }  
 
+   public void resetPlot(){
+      gpview.resetPlot();
+   }
+
 
 } 

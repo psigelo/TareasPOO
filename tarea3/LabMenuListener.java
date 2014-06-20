@@ -50,5 +50,8 @@ public class LabMenuListener implements ActionListener  {
          String data = JOptionPane.showInputDialog("Enter view refresh time [s]");
          world.setRefreshPeriod(Double.parseDouble(data));
       }
+      if (text.equals("ResetPlot")) {
+         world.resetPlot();
+      }
    }
 }
