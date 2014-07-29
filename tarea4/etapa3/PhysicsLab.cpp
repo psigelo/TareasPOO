@@ -42,8 +42,8 @@ int main(int argvc, char * argv[]) {
 	//double fixedhook1_x = 0;
 	//double fixedhook1_y =0;
 
-    double spring_restLenght = 1;
-    double spring_stiffness = 20;
+    double spring_restLenght = 5;
+    double spring_stiffness = 0.5;
 
     /* CREATE PHYSICAL ELEMENTS */
     CVector position(b0_position_x,b0_position_y);

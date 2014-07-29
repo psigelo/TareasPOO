@@ -29,7 +29,5 @@ public:
    //The next two methods are intentionally empty
    virtual void computeNextState(double delta_t, MyWorld * world) {}
    virtual void updateState(){}
-   virtual CVector getLeftSide(double thetha) const;
-   virtual CVector getRightSide(double thetha) const;
 };
 #endif

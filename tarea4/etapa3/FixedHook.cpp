@@ -42,13 +42,3 @@ string FixedHook::getState(int tipo) const{
     else
         return  std::to_string(pos_t.getX()) + "," + std::to_string(pos_t.getY());
 }
-
-CVector FixedHook::getLeftSide(double thetha) const {
-    CVector out(pos_t.getX(),pos_t.getY());
-    return out;
-}
-
-CVector FixedHook::getRightSide(double thetha) const {
-    CVector out(pos_t.getX(),pos_t.getY());
-    return out;
-}

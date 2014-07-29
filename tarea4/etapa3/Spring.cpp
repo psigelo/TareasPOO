@@ -42,7 +42,6 @@ CVector Spring::getForce(const SpringAttachable * pball) const {
    if ((a_end != NULL) && (b_end != NULL)){ //We will get a force just if the spring is connected by both sides.
         double thetha   =  atan  ((b_end->getPosition().getY() - a_end->getPosition().getY() ) /
                                   (b_end->getPosition().getX() - a_end->getPosition().getX() ));
-        thetha = floorf(thetha);
 
         double x_left   = a_end->getPosition().getX();
         double y_left   = a_end->getPosition().getY();
@@ -50,10 +49,16 @@ CVector Spring::getForce(const SpringAttachable * pball) const {
         double y_right  = b_end->getPosition().getY();
 
         double currentLenght = sqrt(pow((x_left - x_right), 2) + pow((y_left - y_right), 2));
-        double difference = restLength - currentLenght;
+        double difference =  currentLenght - restLength;
 
         double force_x = -stiffness * difference * cos(thetha);
         double force_y = -stiffness * difference * sin(thetha);
+
+        if(a_end->getPosition().getX() > b_end->getPosition().getX())
+            force_x = -force_x;
+        if(a_end->getPosition().getY() > b_end->getPosition().getY())
+            force_y = -force_y;
+
         force.set(force_x, force_y);
     }
     return force;
@@ -92,23 +97,20 @@ string Spring::getState(int tipo) const {
     double x_right;
     double y_right;
 
-    double thetha   =  atan ((b_end->getPosition().getY() - a_end->getPosition().getY() ) /
-                             (b_end->getPosition().getX() - a_end->getPosition().getX() ));
-
     if(a_end != NULL){
-        x_left   = a_end->getLeftSide(thetha).getX();
-        y_left   = a_end->getLeftSide(thetha).getY();
+        x_left   = a_end->getPosition().getX();
+        y_left   = a_end->getPosition().getY();
     }else{
-        x_left = -1;
-        y_left = -1;
+        x_left = -99999999;
+        y_left = -99999999;
     }
 
     if(b_end != NULL){
-        x_right  = b_end->getRightSide(thetha).getX();
-        y_right  = b_end->getRightSide(thetha).getY();
+        x_right  = b_end->getPosition().getX();
+        y_right  = b_end->getPosition().getY();
     }else{
-        x_right = -1;
-        y_right = -1;
+        x_right = -99999999;
+        y_right = -99999999;
     }
 
     if(tipo == PANTALLA){
@@ -118,12 +120,4 @@ string Spring::getState(int tipo) const {
         return   std::to_string(x_left)  + "," + std::to_string(y_left) + ","
                 +std::to_string(x_right) + "," + std::to_string(y_right);
     }
-}
-
-CVector Spring::getLeftSide(double thetha) const {
-    return a_end->getPosition();;
-}
-
-CVector Spring::getRightSide(double thetha) const {
-    return b_end->getPosition();;
 }

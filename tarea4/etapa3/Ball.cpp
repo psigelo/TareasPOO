@@ -17,27 +17,6 @@ double Ball::getRadius() const {
    return radius;
 }
 
-/**
- *  Gives the position of the left side of the ball
- *  @param thetha the angle of the string with the curve y=0.
- *  @return double the position.
- */
-CVector Ball::getLeftSide(double thetha) const {
-    CVector out(pos_t.getX()-radius*cos(thetha),pos_t.getY()-radius*sin(thetha));
-    return out;
-}
-
-/**
- *  Gives the position of the right side of the ball
- *  @param thetha the angle of the string with the curve y=0.
- *  @return double the position.
- */
-CVector Ball::getRightSide(double thetha) const {
-    CVector out(pos_t.getX()+radius*cos(thetha),pos_t.getY()+radius*sin(thetha));
-    return out;
-}
-
-
 CVector Ball::getSpeed() const {
     return speed_t;
 }
@@ -51,7 +30,7 @@ double Ball::getMass() const {
 }
 
 /**
- *  Adds the spring to the springs vector.
+ *  Attach the spring to the springs vector.
  */
 void Ball::attachSpring(Spring *s){
     springs.push_back(s);

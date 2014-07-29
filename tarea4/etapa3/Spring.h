@@ -17,7 +17,7 @@ private:
    const double restLength;
    const double stiffness;
    SpringAttachable * a_end, *b_end;
-   Spring(); 
+   Spring();
 public:
    Spring(double restLength, double stiffness);
    void attachEnd (SpringAttachable *sa);
@@ -27,7 +27,5 @@ public:
    void updateState();
    virtual string getDescription(int tipo) const;
    virtual string getState(int tipo) const;
-   virtual CVector getLeftSide(double thetha)  const;
-   virtual CVector getRightSide(double thetha) const;
 };
 #endif
