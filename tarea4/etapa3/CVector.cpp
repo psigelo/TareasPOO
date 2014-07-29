@@ -42,7 +42,8 @@ CVector CVector::unitary() const {
 }
 
 CVector operator*(double scalar, const CVector &v){  // 3*v
-//to be coded by you
+    CVector product(v.x * scalar, v.y * scalar);
+    return product;
 }
 
 ostream & operator << (ostream &os, const CVector &v){

@@ -40,23 +40,23 @@ CVector Spring::getAendPosition() const {
 CVector Spring::getForce(const SpringAttachable * pball) const {
    CVector force(0,0);
    if ((a_end != NULL) && (b_end != NULL)){ //We will get a force just if the spring is connected by both sides.
-        double thetha   =  atan  ((b_end->getPosition().getY() - a_end->getPosition().getY() ) /
-                                  (b_end->getPosition().getX() - a_end->getPosition().getX() ));
 
-        double x_left   = a_end->getPosition().getX();
-        double y_left   = a_end->getPosition().getY();
-        double x_right  = b_end->getPosition().getX();
-        double y_right  = b_end->getPosition().getY();
+        double x_1  = a_end->getPosition().getX();
+        double y_1   = a_end->getPosition().getY();
+        double x_2  = b_end->getPosition().getX();
+        double y_2  = b_end->getPosition().getY();
 
-        double currentLenght = sqrt(pow((x_left - x_right), 2) + pow((y_left - y_right), 2));
+        double thetha   =  atan  ((y_2 - y_1 ) /(x_2 - x_1 ));
+
+        double currentLenght = sqrt(pow((x_1 - x_2), 2) + pow((y_1 - y_2), 2));
         double difference =  currentLenght - restLength;
 
         double force_x = -stiffness * difference * cos(thetha);
         double force_y = -stiffness * difference * sin(thetha);
 
-        if(a_end->getPosition().getX() > b_end->getPosition().getX())
+        if(x_1 > x_2)
             force_x = -force_x;
-        if(a_end->getPosition().getY() > b_end->getPosition().getY())
+        if(y_1 > y_2)
             force_y = -force_y;
 
         force.set(force_x, force_y);
@@ -79,10 +79,10 @@ string Spring::getDescription(int tipo) const {
     if(tipo == PANTALLA)
         return "Spring_"+ std::to_string(getId())+":a_end,\tb_end";
     else {
-        return      "s"+ std::to_string(getId())+" left_x"  + ","
-                +   "s"+ std::to_string(getId())+" left_y"  + ","
-                +   "s"+ std::to_string(getId())+" right_x" + ","
-                +   "s"+ std::to_string(getId())+" right_x";
+        return      "s"+ std::to_string(getId())+" a_end_x"  + ","
+                +   "s"+ std::to_string(getId())+" a_end_y"  + ","
+                +   "s"+ std::to_string(getId())+" b_end_x" + ","
+                +   "s"+ std::to_string(getId())+" b_end_x";
     }
 }
 
@@ -92,32 +92,32 @@ string Spring::getDescription(int tipo) const {
  *  @return string the position in the format selected as specified.
  */
 string Spring::getState(int tipo) const {
-    double x_left;
-    double y_left;
-    double x_right;
-    double y_right;
+    double x_1;
+    double y_1;
+    double x_2;
+    double y_2;
 
     if(a_end != NULL){
-        x_left   = a_end->getPosition().getX();
-        y_left   = a_end->getPosition().getY();
+        x_1   = a_end->getPosition().getX();
+        y_1   = a_end->getPosition().getY();
     }else{
-        x_left = -99999999;
-        y_left = -99999999;
+        x_1 = -999999999;
+        y_1 = -999999999;
     }
 
     if(b_end != NULL){
-        x_right  = b_end->getPosition().getX();
-        y_right  = b_end->getPosition().getY();
+        x_2  = b_end->getPosition().getX();
+        y_2  = b_end->getPosition().getY();
     }else{
-        x_right = -99999999;
-        y_right = -99999999;
+        x_2 = -999999999;
+        y_2 = -999999999;
     }
 
     if(tipo == PANTALLA){
-        return    "(" +std::to_string(x_left) + ", " + std::to_string(y_left) + ") , "
-                +"(" +std::to_string(x_right) + ", " + std::to_string(y_right) + ")" ;
+        return    "(" +std::to_string(x_1) + ", " + std::to_string(y_1) + ") , "
+                +"(" +std::to_string(x_2) + ", " + std::to_string(y_2) + ")" ;
     }else{
-        return   std::to_string(x_left)  + "," + std::to_string(y_left) + ","
-                +std::to_string(x_right) + "," + std::to_string(y_right);
+        return   std::to_string(x_1)  + "," + std::to_string(y_1) + ","
+                +std::to_string(x_2) + "," + std::to_string(y_2);
     }
 }
