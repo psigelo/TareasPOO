@@ -26,7 +26,7 @@ int main(int argvc, char * argv[]) {
     /* PARAMETERS */
     double mass = 1.0;      // Mass (for both balls)
     double radius = 0.01;    // Radius (for both balls)
-    double b0_position_x = 0.5;
+    double b0_position_x = 1;
     double b0_position_y = 0;
     //double b1_position_x = 0;
     //double b1_position_y = 0;
@@ -36,7 +36,7 @@ int main(int argvc, char * argv[]) {
     //double b1_speed_x = 0;
     //double b1_speed_y = 0;
 
-	double fixedhook0_x = 1;
+	double fixedhook0_x = 0;
 	double fixedhook0_y = 0;
 
 	//double fixedhook1_x = 0;

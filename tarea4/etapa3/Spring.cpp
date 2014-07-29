@@ -30,6 +30,7 @@ CVector Spring::getAendPosition() const {
       return a_end->getPosition();
    if (b_end != NULL)
       return b_end->getPosition()-l;
+    return l;
 }
 
 /**
@@ -40,16 +41,22 @@ CVector Spring::getAendPosition() const {
 CVector Spring::getForce(const SpringAttachable * pball) const {
    CVector force(0,0);
    if ((a_end != NULL) && (b_end != NULL)){ //We will get a force just if the spring is connected by both sides.
+        double thetha;
 
         double x_1  = a_end->getPosition().getX();
         double y_1   = a_end->getPosition().getY();
         double x_2  = b_end->getPosition().getX();
         double y_2  = b_end->getPosition().getY();
 
-        double thetha   =  atan  ((y_2 - y_1 ) /(x_2 - x_1 ));
-
         double currentLenght = sqrt(pow((x_1 - x_2), 2) + pow((y_1 - y_2), 2));
         double difference =  currentLenght - restLength;
+
+        if( x_1 == x_2 )
+            thetha = 0;
+        else{
+            int sign = y_1 > y_2?1:-1;
+            thetha = sign * acos(currentLenght/(x_1-x_2));
+        }
 
         double force_x = -stiffness * difference * cos(thetha);
         double force_y = -stiffness * difference * sin(thetha);
