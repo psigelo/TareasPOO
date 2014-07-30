@@ -106,7 +106,10 @@ string Ball::getDescription(int tipo) const {
  */
 string Ball::getState(int tipo) const{
     if(tipo == PANTALLA)
+        
         return "(" +std::to_string(pos_t.getX()) + ", " + std::to_string(pos_t.getY()) + ")" ;
+        
+    
     else
         return  std::to_string(pos_t.getX()) + "," + std::to_string(pos_t.getY());
 }

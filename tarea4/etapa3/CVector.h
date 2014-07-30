@@ -13,8 +13,8 @@ class CVector {
             this->x=x;
   	         this->y=y;
         }
-        double getX() const { return x; }
-        double getY() const { return y; }
+        double getX() const ;
+        double getY() const ;
         void set(double x, double y) { // to set a new position
             this->x=x;
   	         this->y=y;

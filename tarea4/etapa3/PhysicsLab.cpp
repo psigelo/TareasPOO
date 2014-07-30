@@ -27,7 +27,7 @@ int main(int argvc, char * argv[]) {
     double mass = 1.0;      // Mass (for both balls)
     double radius = 0.01;    // Radius (for both balls)
     double b0_position_x = 1;
-    double b0_position_y = 0;
+    double b0_position_y = 5;
     //double b1_position_x = 0;
     //double b1_position_y = 0;
 
