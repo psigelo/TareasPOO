@@ -20,3 +20,5 @@ PhysicsLab: $(Dependencias)
 clean:
 	rm *.o $(Objetivo)
 
+run:
+	./$(Objetivo)

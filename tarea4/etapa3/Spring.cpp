@@ -42,32 +42,20 @@ CVector Spring::getForce(const SpringAttachable * pball) const {
    CVector force(0,0);
    if ((a_end != NULL) && (b_end != NULL)){ //We will get a force just if the spring is connected by both sides.
         double thetha;
-        double currentLenght = sqrt(pow((x_1 - x_2), 2) + pow((y_1 - y_2), 2));
-        double difference =  currentLenght - restLength;
-
         double x_1  = a_end->getPosition().getX();
         double y_1  = a_end->getPosition().getY();
         double x_2  = b_end->getPosition().getX();
         double y_2  = b_end->getPosition().getY();
+        double currentLenght = sqrt(pow((x_1 - x_2), 2) + pow((y_1 - y_2), 2));
+        double difference =  currentLenght - restLength;
+        double dir = (pball == a_end) ? 1 : -1;
         CVector direccion_unitario;
-
-
-
-        if (pball == a_end){
-            direccion_unitario.set( (x_2 - x_1)/currentLenght , (y_2 - y_1)/currentLenght  ); 
-        }
-        else{
-            direccion_unitario.set( -(x_2 - x_1)/currentLenght , -(y_2 - y_1)/currentLenght  );  
-        }
-
-
         
-
+        direccion_unitario.set( dir*(x_2 - x_1)/currentLenght , dir*(y_2 - y_1)/currentLenght  ); 
         double magnitud_fuerza = abs(stiffness * difference);
         double constraccion = (currentLenght > restLength) ? 1:-1;   // Si se contrae vale 1, en caso contrario se dilata y vale -1.
-
         force = constraccion * magnitud_fuerza * direccion_unitario;
-        
+       
     }
     return force;
 }

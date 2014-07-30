@@ -11,11 +11,12 @@ int main(int argvc, char * argv[]) {
     double endTime;
     double samplingTime;
     if (argvc != 4)  {
-        //Use deault values
-        deltaTime = 0.005;
-        endTime = 10;
-        samplingTime = 1;
-        cout << "Usage: "<< argv[0] << " <delta_time[s]> <end_time[s]> <sampling_time[s]> \n" << "Using default values 0.05, 10 y 1" << endl;
+        cout << "ingrese deltaTime" << endl;
+        cin >> deltaTime;
+        cout << "ingrese endTime" << endl;
+        cin >> endTime;
+        cout << "ingrese samplingTime" << endl;
+        cin >> samplingTime; 
     }else{
         deltaTime = atof(argv[1]);    // [s]
         endTime = atof(argv[2]);      // [s]
